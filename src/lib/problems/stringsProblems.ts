@@ -251,6 +251,226 @@ console.log(str.replaceAll("l", "L"));`,
   },
   {
     id: '14',
+    title: 'Title Case',
+    description: 'Capitalize the first letter of each word in a string',
+    difficulty: 'Easy',
+    category: 'strings',
+    solution: `function titleCase(str: string): string {
+  return str.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}`,
+    testCases: [
+      {
+        input: 'str = "hello world"',
+        output: 'Hello World'
+      },
+      {
+        input: 'str = "JAVASCRIPT IS AWESOME"',
+        output: 'Javascript Is Awesome'
+      }
+    ]
+  },
+  {
+    id: '15',
+    title: 'Longest Word',
+    description: 'Find the longest word in a string',
+    difficulty: 'Easy',
+    category: 'strings',
+    solution: `function longestWord(str: string): string {
+  return str.split(' ').reduce((a, b) => a.length > b.length ? a : b);
+}`,
+    testCases: [
+      {
+        input: 'str = "The quick brown fox jumps over the lazy dog"',
+        output: 'quick'
+      },
+      {
+        input: 'str = "JavaScript is awesome"',
+        output: 'JavaScript'
+      }
+    ]
+  },
+  {
+    id: '16',
+    title: 'String Repeat',
+    description: 'Repeat a string N times',
+    difficulty: 'Easy',
+    category: 'strings',
+    solution: `function repeatString(str: string, n: number): string {
+  return str.repeat(n);
+}`,
+    testCases: [
+      {
+        input: 'str = "abc", n = 3',
+        output: 'abcabcabc'
+      },
+      {
+        input: 'str = "x", n = 5',
+        output: 'xxxxx'
+      }
+    ]
+  },
+  {
+    id: '17',
+    title: 'String Truncate',
+    description: 'Truncate a string if it is longer than the given maximum length',
+    difficulty: 'Easy',
+    category: 'strings',
+    solution: `function truncate(str: string, n: number): string {
+  return str.length > n ? str.slice(0, n) + '...' : str;
+}`,
+    testCases: [
+      {
+        input: 'str = "Hello World", n = 5',
+        output: 'Hello...'
+      },
+      {
+        input: 'str = "Short", n = 10',
+        output: 'Short'
+      }
+    ]
+  },
+  {
+    id: '18',
+    title: 'Remove Spaces',
+    description: 'Remove all spaces from a string',
+    difficulty: 'Easy',
+    category: 'strings',
+    solution: `function removeSpaces(str: string): string {
+  return str.replace(/\\s+/g, '');
+}`,
+    testCases: [
+      {
+        input: 'str = "Hello World"',
+        output: 'HelloWorld'
+      },
+      {
+        input: 'str = "  Multiple  Spaces  "',
+        output: 'MultipleSpaces'
+      }
+    ]
+  },
+  {
+    id: '19',
+    title: 'To Camel Case',
+    description: 'Convert a string to camel case',
+    difficulty: 'Medium',
+    category: 'strings',
+    solution: `function toCamelCase(str: string): string {
+  return str.replace(/[-_](.)/g, (_, char) => char.toUpperCase());
+}`,
+    testCases: [
+      {
+        input: 'str = "hello-world"',
+        output: 'helloWorld'
+      },
+      {
+        input: 'str = "hello_world"',
+        output: 'helloWorld'
+      }
+    ]
+  },
+  {
+    id: '20',
+    title: 'Maskify',
+    description: 'Mask all characters except the last 4 in a string',
+    difficulty: 'Medium',
+    category: 'strings',
+    solution: `function maskify(str: string): string {
+  return str.slice(-4).padStart(str.length, '#');
+}`,
+    testCases: [
+      {
+        input: 'str = "4556364607935616"',
+        output: '############5616'
+      },
+      {
+        input: 'str = "1234"',
+        output: '1234'
+      }
+    ]
+  },
+  {
+    id: '21',
+    title: 'Alpha Check',
+    description: 'Check if a string contains only letters',
+    difficulty: 'Medium',
+    category: 'strings',
+    solution: `function isAlpha(str: string): boolean {
+  return /^[A-Za-z]+$/.test(str);
+}`,
+    testCases: [
+      {
+        input: 'str = "Hello"',
+        output: 'true'
+      },
+      {
+        input: 'str = "Hello123"',
+        output: 'false'
+      }
+    ]
+  },
+  {
+    id: '22',
+    title: 'Swap Case',
+    description: 'Swap the case of each character in a string',
+    difficulty: 'Medium',
+    category: 'strings',
+    solution: `function swapCase(str: string): string {
+  return [...str].map(ch => ch === ch.toUpperCase() ? ch.toLowerCase() : ch.toUpperCase()).join('');
+}`,
+    testCases: [
+      {
+        input: 'str = "Hello World"',
+        output: 'hELLO wORLD'
+      },
+      {
+        input: 'str = "JavaScript"',
+        output: 'jAVAsCRIPT'
+      }
+    ]
+  },
+  {
+    id: '23',
+    title: 'Remove Duplicates',
+    description: 'Remove duplicate characters from a string',
+    difficulty: 'Medium',
+    category: 'strings',
+    solution: `function removeDuplicates(str: string): string {
+  return [...new Set(str)].join('');
+}`,
+    testCases: [
+      {
+        input: 'str = "hello"',
+        output: 'helo'
+      },
+      {
+        input: 'str = "aabbcc"',
+        output: 'abc'
+      }
+    ]
+  },
+  {
+    id: '24',
+    title: 'Extract Numbers',
+    description: 'Extract all numbers from a string',
+    difficulty: 'Medium',
+    category: 'strings',
+    solution: `function extractNumbers(str: string): number[] {
+  return (str.match(/\\d+/g) || []).map(Number);
+}`,
+    testCases: [
+      {
+        input: 'str = "abc123def456"',
+        output: '[123, 456]'
+      },
+      {
+        input: 'str = "no numbers here"',
+        output: '[]'
+      }
+    ]
+  },
+  {
+    id: '25',
     title: 'Group Anagrams',
     description: 'Group anagrams from an array of strings',
     difficulty: 'Hard',
@@ -265,8 +485,8 @@ console.log(str.replaceAll("l", "L"));`,
 }`,
     testCases: [
       {
-        input: 'words = ["eat","tea","tan","ate","nat","bat"]',
-        output: '[["eat","tea","ate"],["tan","nat"],["bat"]]'
+        input: 'words = ["eat", "tea", "tan", "ate", "nat", "bat"]',
+        output: '[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]'
       },
       {
         input: 'words = [""]',
@@ -275,7 +495,7 @@ console.log(str.replaceAll("l", "L"));`,
     ]
   },
   {
-    id: '15',
+    id: '14',
     title: 'All Substrings',
     description: 'Find all possible substrings of a string',
     difficulty: 'Hard',
@@ -288,11 +508,16 @@ console.log(str.replaceAll("l", "L"));`,
     }
   }
   return result;
-}`,
+}
+
+// Example usage:
+const str = "abc";
+const substrings = allSubstrings(str);
+console.log(substrings); // ["a", "ab", "abc", "b", "bc", "c"]`,
     testCases: [
       {
         input: 'str = "abc"',
-        output: '["a","ab","abc","b","bc","c"]'
+        output: '["a", "ab", "abc", "b", "bc", "c"]'
       },
       {
         input: 'str = "a"',
@@ -301,7 +526,7 @@ console.log(str.replaceAll("l", "L"));`,
     ]
   },
   {
-    id: '16',
+    id: '15',
     title: 'Longest Common Prefix',
     description: 'Find the longest common prefix among an array of strings',
     difficulty: 'Hard',
@@ -316,150 +541,62 @@ console.log(str.replaceAll("l", "L"));`,
     }
   }
   return prefix;
-}`,
+}
+
+// Example usage:
+const words = ["flower", "flow", "flight"];
+const prefix = longestCommonPrefix(words);
+console.log(prefix); // "fl"`,
     testCases: [
       {
-        input: 'arr = ["flower","flow","flight"]',
-        output: 'fl'
+        input: 'arr = ["flower", "flow", "flight"]',
+        output: '"fl"'
       },
       {
-        input: 'arr = ["dog","racecar","car"]',
-        output: ''
+        input: 'arr = ["dog", "racecar", "car"]',
+        output: '""'
+      }
+    ]
+  },
+  {
+    id: '16',
+    title: 'Decode Run-Length Encoding',
+    description: 'Decode a run-length encoded string (e.g., "a4b2" → "aaaabb")',
+    difficulty: 'Medium',
+    category: 'strings',
+    solution: `function decodeRLE(str: string): string {
+  return str.replace(/([a-zA-Z])(\\d+)/g, (_, ch, n) => ch.repeat(Number(n)));
+}
+
+// Example usage:
+const encoded = "a4b2c3";
+const decoded = decodeRLE(encoded);
+console.log(decoded); // "aaaabbccc"`,
+    testCases: [
+      {
+        input: 'str = "a4b2c3"',
+        output: '"aaaabbccc"'
+      },
+      {
+        input: 'str = "x1y2"',
+        output: '"xyy"'
       }
     ]
   },
   {
     id: '17',
-    title: 'String Compression',
-    description: 'Compress a string by counting consecutive characters',
-    difficulty: 'Medium',
-    category: 'strings',
-    solution: `function compress(str: string): string {
-  let result = '';
-  let count = 1;
-  
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] === str[i + 1]) {
-      count++;
-    } else {
-      result += str[i] + (count > 1 ? count : '');
-      count = 1;
-    }
-  }
-  
-  return result;
-}`,
-    testCases: [
-      {
-        input: 'str = "aabcccccaaa"',
-        output: 'a2b1c5a3'
-      },
-      {
-        input: 'str = "abcd"',
-        output: 'abcd'
-      }
-    ]
-  },
-  {
-    id: '18',
-    title: 'Valid Parentheses',
-    description: 'Check if a string of parentheses is valid',
-    difficulty: 'Medium',
-    category: 'strings',
-    solution: `function isValid(s: string): boolean {
-  const stack: string[] = [];
-  const map: Record<string, string> = {
-    ')': '(',
-    '}': '{',
-    ']': '['
-  };
-  
-  for (let char of s) {
-    if (char in map) {
-      const top = stack.pop();
-      if (top !== map[char]) return false;
-    } else {
-      stack.push(char);
-    }
-  }
-  
-  return stack.length === 0;
-}`,
-    testCases: [
-      {
-        input: 's = "()"',
-        output: 'true'
-      },
-      {
-        input: 's = "([)]"',
-        output: 'false'
-      }
-    ]
-  },
-  {
-    id: '19',
-    title: 'String to Integer',
-    description: 'Convert a string to an integer',
-    difficulty: 'Medium',
-    category: 'strings',
-    solution: `function myAtoi(s: string): number {
-  const num = parseInt(s.trim());
-  if (isNaN(num)) return 0;
-  return Math.max(Math.min(num, 2**31 - 1), -(2**31));
-}`,
-    testCases: [
-      {
-        input: 's = "42"',
-        output: '42'
-      },
-      {
-        input: 's = "   -42"',
-        output: '-42'
-      }
-    ]
-  },
-  {
-    id: '20',
-    title: 'Longest Substring Without Repeating',
-    description: 'Find the length of the longest substring without repeating characters',
-    difficulty: 'Hard',
-    category: 'strings',
-    solution: `function lengthOfLongestSubstring(s: string): number {
-  const map = new Map<string, number>();
-  let max = 0;
-  let start = 0;
-  
-  for (let i = 0; i < s.length; i++) {
-    if (map.has(s[i])) {
-      start = Math.max(start, map.get(s[i])! + 1);
-    }
-    map.set(s[i], i);
-    max = Math.max(max, i - start + 1);
-  }
-  
-  return max;
-}`,
-    testCases: [
-      {
-        input: 's = "abcabcbb"',
-        output: '3'
-      },
-      {
-        input: 's = "bbbbb"',
-        output: '1'
-      }
-    ]
-  },
-  {
-    id: '21',
     title: 'String Rotation',
     description: 'Check if one string is a rotation of another',
     difficulty: 'Medium',
     category: 'strings',
     solution: `function isRotation(s1: string, s2: string): boolean {
-  if (s1.length !== s2.length) return false;
-  return (s1 + s1).includes(s2);
-}`,
+  return s1.length === s2.length && (s1 + s1).includes(s2);
+}
+
+// Example usage:
+const s1 = "waterbottle";
+const s2 = "erbottlewat";
+console.log(isRotation(s1, s2)); // true`,
     testCases: [
       {
         input: 's1 = "waterbottle", s2 = "erbottlewat"',
@@ -472,112 +609,69 @@ console.log(str.replaceAll("l", "L"));`,
     ]
   },
   {
-    id: '22',
-    title: 'String Permutation',
-    description: 'Check if one string is a permutation of another',
-    difficulty: 'Medium',
+    id: '18',
+    title: 'String Permutations',
+    description: 'Generate all possible permutations of a string',
+    difficulty: 'Hard',
     category: 'strings',
-    solution: `function isPermutation(s1: string, s2: string): boolean {
-  if (s1.length !== s2.length) return false;
-  const chars = new Map<string, number>();
-  
-  for (let char of s1) {
-    chars.set(char, (chars.get(char) || 0) + 1);
-  }
-  
-  for (let char of s2) {
-    const count = chars.get(char);
-    if (!count) return false;
-    chars.set(char, count - 1);
-  }
-  
-  return true;
-}`,
-    testCases: [
-      {
-        input: 's1 = "abc", s2 = "cba"',
-        output: 'true'
-      },
-      {
-        input: 's1 = "abc", s2 = "def"',
-        output: 'false'
-      }
-    ]
-  },
-  {
-    id: '23',
-    title: 'URLify',
-    description: 'Replace spaces in a string with %20',
-    difficulty: 'Easy',
-    category: 'strings',
-    solution: `function urlify(str: string): string {
-  return str.trim().replace(/\s+/g, '%20');
-}`,
-    testCases: [
-      {
-        input: 'str = "Mr John Smith"',
-        output: 'Mr%20John%20Smith'
-      },
-      {
-        input: 'str = "Hello World  "',
-        output: 'Hello%20World'
-      }
-    ]
-  },
-  {
-    id: '24',
-    title: 'String Compression II',
-    description: 'Compress a string by removing duplicates',
-    difficulty: 'Medium',
-    category: 'strings',
-    solution: `function compressString(str: string): string {
-  let result = '';
-  let current = str[0];
-  let count = 1;
-  
-  for (let i = 1; i < str.length; i++) {
-    if (str[i] === current) {
-      count++;
-    } else {
-      result += current + count;
-      current = str[i];
-      count = 1;
+    solution: `function permutations(str: string): string[] {
+  if (str.length <= 1) return [str];
+  const result: string[] = [];
+  for (let i = 0; i < str.length; i++) {
+    const rest = str.slice(0, i) + str.slice(i + 1);
+    for (let perm of permutations(rest)) {
+      result.push(str[i] + perm);
     }
   }
-  
-  result += current + count;
-  return result.length < str.length ? result : str;
-}`,
+  return result;
+}
+
+// Example usage:
+const str = "abc";
+const perms = permutations(str);
+console.log(perms); // ["abc", "acb", "bac", "bca", "cab", "cba"]`,
     testCases: [
       {
-        input: 'str = "aabcccccaaa"',
-        output: 'a2b1c5a3'
+        input: 'str = "abc"',
+        output: '["abc", "acb", "bac", "bca", "cab", "cba"]'
       },
       {
-        input: 'str = "abcd"',
-        output: 'abcd'
+        input: 'str = "ab"',
+        output: '["ab", "ba"]'
       }
     ]
   },
   {
-    id: '25',
-    title: 'String to Words',
-    description: 'Split a string into words and reverse them',
-    difficulty: 'Medium',
+    id: '19',
+    title: 'Palindromic Substrings',
+    description: 'Find all palindromic substrings in a string',
+    difficulty: 'Hard',
     category: 'strings',
-    solution: `function reverseWords(str: string): string {
-  return str.split(' ')
-    .map(word => word.split('').reverse().join(''))
-    .join(' ');
-}`,
+    solution: `function palindromicSubstrings(str: string): string[] {
+  const result: string[] = [];
+  for (let i = 0; i < str.length; i++) {
+    for (let j = i; j < str.length; j++) {
+      const sub = str.slice(i, j + 1);
+      if (sub === sub.split('').reverse().join('')) {
+        result.push(sub);
+      }
+    }
+  }
+  return result;
+}
+
+// Example usage:
+const str = "aaa";
+const palindromes = palindromicSubstrings(str);
+console.log(palindromes); // ["a", "aa", "aaa"]`,
     testCases: [
       {
-        input: 'str = "Let\'s take LeetCode contest"',
-        output: 's\'teL ekat edoCteeL tsetnoc'
+        input: 'str = "aaa"',
+        output: '["a", "aa", "aaa"]'
       },
       {
-        input: 'str = "Hello World"',
-        output: 'olleH dlroW'
+        input: 'str = "abc"',
+        output: '["a", "b", "c"]'
       }
     ]
   }
