@@ -126,7 +126,7 @@ export const recursionProblems: Problem[] = [
       {
         input: 'n = 3',
         output: '3 2 1'
-      }
+      } 
     ]
   },
   {

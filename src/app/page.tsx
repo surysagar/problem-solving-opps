@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div className="flex h-screen">
       {/* Main Sidebar */}
-      <div className="w-[120px] h-screen bg-background border-r">
+      <div className="w-[200px] h-screen bg-background border-r">
         <MainSidebar onSelectCategory={setSelectedCategory} />
       </div>
 
