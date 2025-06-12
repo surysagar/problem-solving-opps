@@ -10,8 +10,8 @@ import { sortingProblems } from './sortingProblems'
 import { recursionProblems } from './recursionProblems'
 import { filtersProblems } from './filtersProblems'
 import { polyfillsProblems } from './polyfillsProblems'
-import { objectScopeProblems } from './objectScopeProblems'
 import { objectArrayMixProblems } from './objectArrayMixProblems'
+import { nestedArrayMutationProblems } from './nestedArrayMutationProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -25,6 +25,6 @@ export const problems: Record<string, Problem[]> = {
   recursion: recursionProblems,
   filters: filtersProblems,
   polyfills: polyfillsProblems,
-  'objects-scopes': objectScopeProblems,
-  'object-array-mix': objectArrayMixProblems
+  'object-array-mix': objectArrayMixProblems,
+  'nested-array-mutation-spread': nestedArrayMutationProblems
 } 

@@ -10,22 +10,19 @@ const categories = [
   { id: 'recursion', label: 'Recursion' },
   { id: 'arrays', label: 'Arrays' },
   { id: 'strings', label: 'Strings' },
-  { id: 'dynamic-programming', label: 'DP' },
+  { id: 'nested-array-mutation-spread', label: 'Nested Array Mutation' },
   { id: 'sorting', label: 'Sorting' },
   { id: 'loop', label: 'Loops' },
   { id: 'filters', label: 'Filters' },
   { id: 'polyfills', label: 'Polyfills' },
-  { id: 'objects-scopes', label: 'Objects & Scopes' },
+  { id: 'object-array-mix', label: 'Object Array Mix' },
   { id: 'functions-closures', label: 'Functions & Closures' },
   { id: 'this-keyword', label: 'This Keyword' },
   { id: 'prototypes', label: 'Prototypes' },
   { id: 'async-await', label: 'Async/Await' },
   { id: 'generators', label: 'Generators' },
   { id: 'iterators', label: 'Iterators' },
-  { id: 'promises', label: 'Promises' },
-  { id: 'async-await', label: 'Async/Await' },
-  { id: 'generators', label: 'Generators' },
-  { id: 'iterators', label: 'Iterators' },
+  { id: 'promises', label: 'Promises' }
 ]
 
 export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {
