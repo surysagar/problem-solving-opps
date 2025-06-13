@@ -458,6 +458,33 @@ function makeMatrix(n) {\n  let matrix = [];\n  for (let i = 0; i < n; i++) {\n 
     choices: ['O(n)', 'O(n^2)', 'O(1)'],
     correctAnswer: 1,
     explanation: 'A 2D array of size n x n is created, so the space complexity is O(n^2).',
+  },
+  {
+    id: 'bigo-quiz-obj-1',
+    type: 'quiz',
+    title: 'Big O: Add Key to Object',
+    question: 'What is the big O for adding a key and value into an object?',
+    choices: ['O(1)', 'O(n)', 'O(n log n)'],
+    correctAnswer: 0,
+    explanation: 'Adding a key-value pair to a plain JavaScript object is typically O(1) because it uses a hash table under the hood.',
+  },
+  {
+    id: 'bigo-quiz-obj-2',
+    type: 'quiz',
+    title: 'Big O: Access Key in Object',
+    question: 'What is the big O for accessing a key in an object?',
+    choices: ['O(1)', 'O(n)'],
+    correctAnswer: 0,
+    explanation: 'Accessing a value by key in a plain JavaScript object is O(1) on average, thanks to hash table implementation.',
+  },
+  {
+    id: 'bigo-quiz-obj-3',
+    type: 'quiz',
+    title: 'Big O: Remove Key from Object',
+    question: 'What is the big O of removing a key in an object?',
+    choices: ['O(n)', 'O(1)', 'O(n^2)'],
+    correctAnswer: 1,
+    explanation: 'Removing a key from a plain JavaScript object is O(1) on average, as it is a hash table operation.',
   }
   // ... 20 more problems will be added here ...
 ] 
