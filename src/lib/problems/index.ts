@@ -12,6 +12,7 @@ import { filtersProblems } from './filtersProblems'
 import { polyfillsProblems } from './polyfillsProblems'
 import { objectArrayMixProblems } from './objectArrayMixProblems'
 import { nestedArrayMutationProblems } from './nestedArrayMutationProblems'
+import { bigONotationProblems } from './bigONotationProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -26,5 +27,6 @@ export const problems: Record<string, Problem[]> = {
   filters: filtersProblems,
   polyfills: polyfillsProblems,
   'object-array-mix': objectArrayMixProblems,
-  'nested-array-mutation-spread': nestedArrayMutationProblems
+  'nested-array-mutation-spread': nestedArrayMutationProblems,
+  'big-o-notation': bigONotationProblems
 } 

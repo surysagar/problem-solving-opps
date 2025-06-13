@@ -25,16 +25,16 @@ export default function Home() {
   const categoryProblems = problems[selectedCategory] || []
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen overflow-hidden">
       {/* Main Sidebar */}
-      <div className="w-[200px] h-screen bg-background border-r">
+      <div className="w-[200px] h-screen bg-background border-r overflow-y-auto">
         <MainSidebar onSelectCategory={setSelectedCategory} />
       </div>
 
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto">
         <div className="p-8">
-          <h1 className="text-2xl font-bold mb-6 capitalize">{selectedCategory.replace('-', ' ')} Problems</h1>
+          <h1 className="text-2xl font-bold mb-6 capitalize">{selectedCategory.replace(/-/g, ' ')} Problems</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {categoryProblems.map((problem) => (
               <ProblemCard

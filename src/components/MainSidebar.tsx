@@ -22,7 +22,8 @@ const categories = [
   { id: 'async-await', label: 'Async/Await' },
   { id: 'generators', label: 'Generators' },
   { id: 'iterators', label: 'Iterators' },
-  { id: 'promises', label: 'Promises' }
+  { id: 'promises', label: 'Promises' },
+  { id: 'big-o-notation', label: 'Big O Notation' }
 ]
 
 export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {
