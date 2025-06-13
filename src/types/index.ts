@@ -1,7 +1,4 @@
-src/types/index.ts
-
-
-export interface Problem {
+export interface NormalProblem {
   id: string
   title: string
   description: string
@@ -12,4 +9,17 @@ export interface Problem {
     input: string
     output: string
   }[]
-} 
+}
+
+export interface QuizProblem {
+  id: string
+  type: 'quiz'
+  title: string
+  question: string
+  choices: string[]
+  correctAnswer: number
+  explanation?: string
+  category?: string
+}
+
+export type Problem = NormalProblem | QuizProblem 

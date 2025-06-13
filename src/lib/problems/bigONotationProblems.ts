@@ -199,5 +199,190 @@ console.log(mergeSortES6([3,1,4,2]));`,
       { input: 'arr = [3,1,4,2]', output: '[1,2,3,4]' }
     ]
   },
-// ... 22 more problems will be added here ...
+  {
+    id: 'bigo-quiz-1',
+    type: 'quiz',
+    title: 'Time Complexity Quiz: logUpTo',
+    question: `Determine the **time complexity** for the following function:\n\n\
+function logUpTo(n) {\n  for (var i = 1; i <= n; i++) {\n    console.log(i);\n  }\n}`,
+    choices: [
+      'O(n)',
+      'O(n^2)',
+      'O(n log n)'
+    ],
+    correctAnswer: 0,
+    explanation: 'The loop runs n times, so the time complexity is O(n).',
+  },
+  {
+    id: 'bigo-quiz-2',
+    type: 'quiz',
+    title: 'Time Complexity Quiz: logAtMost10',
+    question: `Determine the **time complexity** for the following function:\n\n\
+function logAtMost10(n) {\n  for (var i = 1; i <= Math.min(n, 10); i++) {\n    console.log(i);\n  }\n}`,
+    choices: [
+      'O(1)',
+      'O(n)',
+      'O(n^2)'
+    ],
+    correctAnswer: 0,
+    explanation: 'The loop runs at most 10 times, regardless of n, so the time complexity is O(1).',
+  },
+  {
+    id: 'bigo-quiz-3',
+    type: 'quiz',
+    title: 'Time Complexity Quiz: logAtLeast10',
+    question: `Determine the time complexity for the following function:\n\n\
+function logAtLeast10(n) {\n  for (var i = 1; i <= Math.max(n, 10); i++) {\n    console.log(i);\n  }\n}`,
+    choices: [
+      'O(n)',
+      'O(1)',
+      'O(n log n)'
+    ],
+    correctAnswer: 0,
+    explanation: 'The loop runs at least 10 times, but for large n it runs n times, so the time complexity is O(n).',
+  },
+  {
+    id: 'bigo-quiz-4',
+    type: 'quiz',
+    title: 'Time Complexity Quiz: onlyElementsAtEvenIndex',
+    question: `Determine the time complexity for the following function:\n\n\
+function onlyElementsAtEvenIndex(array) {\n  var newArray = Array(Math.ceil(array.length / 2));\n  for (var i = 0; i < array.length; i++) {\n    if (i % 2 === 0) {\n      newArray[i / 2] = array[i];\n    }\n  }\n  return newArray;\n}`,
+    choices: [
+      'O(n)',
+      'O(1)',
+      'O(n^2)'
+    ],
+    correctAnswer: 0,
+    explanation: 'The function iterates through the array once, so the time complexity is O(n).',
+  },
+  {
+    id: 'bigo-quiz-5',
+    type: 'quiz',
+    title: 'Time Complexity Quiz: subtotals',
+    question: `Determine the time complexity for the following function:\n\n\
+function subtotals(array) {\n  var subtotalArray = Array(array.length);\n  for (var i = 0; i < array.length; i++) {\n    var subtotal = 0;\n    for (var j = 0; j <= i; j++) {\n      subtotal += array[j];\n    }\n    subtotalArray[i] = subtotal;\n  }\n  return subtotalArray;\n}`,
+    choices: [
+      'O(1)',
+      'O(n)',
+      'O(n^2)'
+    ],
+    correctAnswer: 2,
+    explanation: 'There is a nested loop: for each i, the inner loop runs up to i times, resulting in O(n^2) time complexity.',
+  },
+  {
+    id: 'bigo-quiz-6',
+    type: 'quiz',
+    title: 'Simplify Big O: O(n + 10)',
+    question: 'Simplify the big O expression as much as possible - O(n + 10)',
+    choices: ['O(n)', 'O(n^2)', 'O(n log n)'],
+    correctAnswer: 0,
+    explanation: 'In Big O, constants are dropped, so O(n + 10) simplifies to O(n).',
+  },
+  {
+    id: 'bigo-quiz-7',
+    type: 'quiz',
+    title: 'Simplify Big O: O(100 * n)',
+    question: 'Simplify the big O expression as much as possible - O(100 * n)',
+    choices: ['O(2n)', 'O(1)', 'O(n)'],
+    correctAnswer: 2,
+    explanation: 'In Big O, constant factors are dropped, so O(100 * n) simplifies to O(n).',
+  },
+  {
+    id: 'bigo-quiz-8',
+    type: 'quiz',
+    title: 'Simplify Big O: O(25)',
+    question: 'Simply the following big O expression as much as possible - O(25)',
+    choices: ['O(n)', 'O(n!)', 'O(1)'],
+    correctAnswer: 2,
+    explanation: 'O(25) is a constant, so it simplifies to O(1).',
+  },
+  {
+    id: 'bigo-quiz-9',
+    type: 'quiz',
+    title: 'Simplify Big O: O(n^2 + n^3)',
+    question: 'Simply the following big O expression as much as possible - O(n^2 + n^3)',
+    choices: ['O(n^2)', 'O(n)', 'O(n^3)'],
+    correctAnswer: 2,
+    explanation: 'In Big O, the highest order term dominates, so O(n^2 + n^3) simplifies to O(n^3).',
+  },
+  {
+    id: 'bigo-quiz-10',
+    type: 'quiz',
+    title: 'Simplify Big O: O(n + n + n + n)',
+    question: 'Simply the following big O expression as much as possible - O(n + n + n + n)',
+    choices: ['O(4n)', 'O(n)', 'O(n^2)'],
+    correctAnswer: 1,
+    explanation: 'O(n + n + n + n) = O(4n), but constants are dropped, so it simplifies to O(n).',
+  },
+  {
+    id: 'bigo-quiz-11',
+    type: 'quiz',
+    title: 'Space Complexity Quiz: logUpTo',
+    question: `Determine the space complexity for the following function:\n\n\
+function logUpTo(n) {\n  for (var i = 1; i <= n; i++) {\n    console.log(i);\n  }\n}`,
+    choices: [
+      'O(1)',
+      'O(n)',
+      'O(n log n)'
+    ],
+    correctAnswer: 0,
+    explanation: 'The function only uses a constant amount of extra space, regardless of n, so the space complexity is O(1).',
+  },
+  {
+    id: 'bigo-quiz-12',
+    type: 'quiz',
+    title: 'Space Complexity Quiz: logAtMost10',
+    question: `Determine the space complexity for the following function:\n\n\
+function logAtMost10(n) {\n  for (var i = 1; i <= Math.min(n, 10); i++) {\n    console.log(i);\n  }\n}`,
+    choices: [
+      'O(1)',
+      'O(n)',
+      'O(n log n)'
+    ],
+    correctAnswer: 0,
+    explanation: 'The function only uses a constant amount of extra space, regardless of n, so the space complexity is O(1).',
+  },
+  {
+    id: 'bigo-quiz-13',
+    type: 'quiz',
+    title: 'Space Complexity Quiz: logAtMost10 (repeat)',
+    question: `Determine the space complexity for the following function:\n\n\
+function logAtMost10(n) {\n  for (var i = 1; i <= Math.min(n, 10); i++) {\n    console.log(i);\n  }\n}`,
+    choices: [
+      'O(1)',
+      'O(n)',
+      'O(n log n)'
+    ],
+    correctAnswer: 0,
+    explanation: 'The function only uses a constant amount of extra space, regardless of n, so the space complexity is O(1).',
+  },
+  {
+    id: 'bigo-quiz-14',
+    type: 'quiz',
+    title: 'Space Complexity Quiz: onlyElementsAtEvenIndex',
+    question: `Determine the space complexity for the following function:\n\n\
+function onlyElementsAtEvenIndex(array) {\n  var newArray = Array(Math.ceil(array.length / 2));\n  for (var i = 0; i < array.length; i++) {\n    if (i % 2 === 0) {\n      newArray[i / 2] = array[i];\n    }\n  }\n  return newArray;\n}`,
+    choices: [
+      'O(n)',
+      'O(n log n)',
+      'O(n^2)'
+    ],
+    correctAnswer: 0,
+    explanation: 'The function creates a new array of size n/2, which is O(n) space complexity.',
+  },
+  {
+    id: 'bigo-quiz-15',
+    type: 'quiz',
+    title: 'Space Complexity Quiz: subtotals',
+    question: `Determine the space complexity for the following function:\n\n\
+function subtotals(array) {\n  var subtotalArray = Array(array.length);\n  for (var i = 0; i < array.length; i++) {\n    var subtotal = 0;\n    for (var j = 0; j <= i; j++) {\n      subtotal += array[j];\n    }\n    subtotalArray[i] = subtotal;\n  }\n  return subtotalArray;\n}`,
+    choices: [
+      'O(1)',
+      'O(n)',
+      'O(n^2)'
+    ],
+    correctAnswer: 1,
+    explanation: 'The function creates a new array of size n, so the space complexity is O(n).',
+  },
+  // ... 20 more problems will be added here ...
 ] 
