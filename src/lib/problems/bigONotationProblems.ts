@@ -2,6 +2,21 @@ import { Problem } from '@/types'
 
 export const bigONotationProblems: Problem[] = [
   {
+    id: 'bigo-quiz-diff-1',
+    type: 'quiz',
+    title: 'Time Complexity vs Space Complexity',
+    question: `What is the main difference between time complexity and space complexity?\n\n**Time Complexity Example:**\n\n\
+for (let i = 0; i < n; i++) {\n  console.log(i);\n}\n\n**Space Complexity Example:**\n\n\
+let arr = [];\nfor (let i = 0; i < n; i++) {\n  arr.push(i);\n}\n`,
+    choices: [
+      'Time complexity measures how the running time increases as input size grows; space complexity measures how memory usage increases as input size grows.',
+      'Time complexity is always O(1); space complexity is always O(n).',
+      'Time complexity is about memory; space complexity is about speed.'
+    ],
+    correctAnswer: 0,
+    explanation: 'Time complexity is about how long an algorithm takes to run as the input grows. Space complexity is about how much extra memory it uses as the input grows. The examples show a loop (O(n) time) and an array that grows with n (O(n) space).',
+  },
+  {
     id: 'bigo-1',
     title: 'O(1) - Accessing Array Element',
     description: 'Demonstrate constant time access in an array.',
@@ -384,5 +399,65 @@ function subtotals(array) {\n  var subtotalArray = Array(array.length);\n  for (
     correctAnswer: 1,
     explanation: 'The function creates a new array of size n, so the space complexity is O(n).',
   },
+  {
+    id: 'easy-time-1',
+    type: 'quiz',
+    title: 'Time Complexity: Array Access',
+    question: `What is the time complexity of accessing an element in an array by index?\n\n\
+let arr = [10, 20, 30];\nconsole.log(arr[1]);`,
+    choices: ['O(1)', 'O(n)', 'O(n^2)'],
+    correctAnswer: 0,
+    explanation: 'Accessing an element by index in an array is always O(1) (constant time).',
+  },
+  {
+    id: 'easy-time-2',
+    type: 'quiz',
+    title: 'Time Complexity: Simple Loop',
+    question: `What is the time complexity of this loop?\n\n\
+for (let i = 0; i < n; i++) {\n  console.log(i);\n}`,
+    choices: ['O(1)', 'O(n)', 'O(n^2)'],
+    correctAnswer: 1,
+    explanation: 'The loop runs n times, so the time complexity is O(n).',
+  },
+  {
+    id: 'easy-time-3',
+    type: 'quiz',
+    title: 'Time Complexity: Nested Loop',
+    question: `What is the time complexity of this code?\n\n\
+for (let i = 0; i < n; i++) {\n  for (let j = 0; j < n; j++) {\n    console.log(i, j);\n  }\n}`,
+    choices: ['O(n)', 'O(n^2)', 'O(1)'],
+    correctAnswer: 1,
+    explanation: 'There are two nested loops, each running n times, so the time complexity is O(n^2).',
+  },
+  {
+    id: 'easy-space-1',
+    type: 'quiz',
+    title: 'Space Complexity: No Extra Space',
+    question: `What is the space complexity of this function?\n\n\
+function printNumbers(n) {\n  for (let i = 0; i < n; i++) {\n    console.log(i);\n  }\n}`,
+    choices: ['O(1)', 'O(n)', 'O(n^2)'],
+    correctAnswer: 0,
+    explanation: 'No extra space is used except for the loop variable, so the space complexity is O(1).',
+  },
+  {
+    id: 'easy-space-2',
+    type: 'quiz',
+    title: 'Space Complexity: New Array',
+    question: `What is the space complexity of this function?\n\n\
+function makeArray(n) {\n  let arr = [];\n  for (let i = 0; i < n; i++) {\n    arr.push(i);\n  }\n  return arr;\n}`,
+    choices: ['O(1)', 'O(n)', 'O(n^2)'],
+    correctAnswer: 1,
+    explanation: 'A new array of size n is created, so the space complexity is O(n).',
+  },
+  {
+    id: 'easy-space-3',
+    type: 'quiz',
+    title: 'Space Complexity: 2D Array',
+    question: `What is the space complexity of this function?\n\n\
+function makeMatrix(n) {\n  let matrix = [];\n  for (let i = 0; i < n; i++) {\n    matrix.push(new Array(n).fill(0));\n  }\n  return matrix;\n}`,
+    choices: ['O(n)', 'O(n^2)', 'O(1)'],
+    correctAnswer: 1,
+    explanation: 'A 2D array of size n x n is created, so the space complexity is O(n^2).',
+  }
   // ... 20 more problems will be added here ...
 ] 
