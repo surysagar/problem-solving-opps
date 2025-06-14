@@ -112,18 +112,22 @@ export default function ProblemDialog({ isOpen, onClose, problem }: ProblemDialo
                     <div className="space-y-2">
                       <h3 className="text-sm font-medium">Test Cases</h3>
                       <div className="space-y-2">
-                        {problem.testCases.map((testCase, index) => (
-                          <div key={index} className="rounded-md bg-muted p-4">
-                            <div className="space-y-1">
-                              <p className="text-sm font-medium">Input:</p>
-                              <pre className="text-sm text-muted-foreground">{testCase.input}</pre>
+                        {Array.isArray(problem.testCases) && problem.testCases.length > 0 ? (
+                          problem.testCases.map((testCase, index) => (
+                            <div key={index} className="rounded-md bg-muted p-4">
+                              <div className="space-y-1">
+                                <p className="text-sm font-medium">Input:</p>
+                                <pre className="text-sm text-muted-foreground">{testCase.input}</pre>
+                              </div>
+                              <div className="mt-2 space-y-1">
+                                <p className="text-sm font-medium">Output:</p>
+                                <pre className="text-sm text-muted-foreground">{testCase.output}</pre>
+                              </div>
                             </div>
-                            <div className="mt-2 space-y-1">
-                              <p className="text-sm font-medium">Output:</p>
-                              <pre className="text-sm text-muted-foreground">{testCase.output}</pre>
-                            </div>
-                          </div>
-                        ))}
+                          ))
+                        ) : (
+                          <div className="text-sm text-muted-foreground">No test cases available.</div>
+                        )}
                       </div>
                     </div>
                   </>

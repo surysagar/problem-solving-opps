@@ -13,6 +13,7 @@ import { polyfillsProblems } from './polyfillsProblems'
 import { objectArrayMixProblems } from './objectArrayMixProblems'
 import { nestedArrayMutationProblems } from './nestedArrayMutationProblems'
 import { bigONotationProblems } from './bigONotationProblems'
+import { weiredJSProblems } from './weiredJSProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -28,5 +29,6 @@ export const problems: Record<string, Problem[]> = {
   polyfills: polyfillsProblems,
   'object-array-mix': objectArrayMixProblems,
   'nested-array-mutation-spread': nestedArrayMutationProblems,
-  'big-o-notation': bigONotationProblems
+  'big-o-notation': bigONotationProblems,
+  'weired-js': weiredJSProblems
 } 

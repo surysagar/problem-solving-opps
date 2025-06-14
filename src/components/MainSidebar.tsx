@@ -23,7 +23,8 @@ const categories = [
   { id: 'generators', label: 'Generators' },
   { id: 'iterators', label: 'Iterators' },
   { id: 'promises', label: 'Promises' },
-  { id: 'big-o-notation', label: 'Big O Notation' }
+  { id: 'big-o-notation', label: 'Big O Notation' },
+  { id: 'weired-js', label: 'Weird JS' }
 ]
 
 export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {
