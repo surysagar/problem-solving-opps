@@ -14,6 +14,7 @@ import { objectArrayMixProblems } from './objectArrayMixProblems'
 import { nestedArrayMutationProblems } from './nestedArrayMutationProblems'
 import { bigONotationProblems } from './bigONotationProblems'
 import { weiredJSProblems } from './weiredJSProblems'
+import { oopsConceptsProblems } from './oopsConceptsProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -30,5 +31,6 @@ export const problems: Record<string, Problem[]> = {
   'object-array-mix': objectArrayMixProblems,
   'nested-array-mutation-spread': nestedArrayMutationProblems,
   'big-o-notation': bigONotationProblems,
-  'weired-js': weiredJSProblems
+  'weired-js': weiredJSProblems,
+  'oops-concepts': oopsConceptsProblems
 } 
