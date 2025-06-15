@@ -15,6 +15,7 @@ import { nestedArrayMutationProblems } from './nestedArrayMutationProblems'
 import { bigONotationProblems } from './bigONotationProblems'
 import { weiredJSProblems } from './weiredJSProblems'
 import { oopsConceptsProblems } from './oopsConceptsProblems'
+import { thisKeywordProblems } from './thisKeywordProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -32,5 +33,6 @@ export const problems: Record<string, Problem[]> = {
   'nested-array-mutation-spread': nestedArrayMutationProblems,
   'big-o-notation': bigONotationProblems,
   'weired-js': weiredJSProblems,
-  'oops-concepts': oopsConceptsProblems
+  'oops-concepts': oopsConceptsProblems,
+  'this-keyword': thisKeywordProblems
 } 
