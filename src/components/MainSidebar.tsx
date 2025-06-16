@@ -13,7 +13,7 @@ const categories = [
   { id: 'nested-array-mutation-spread', label: 'Nested Array Mutation' },
   { id: 'sorting', label: 'Sorting' },
   { id: 'loop', label: 'Loops' },
-  { id: 'filters', label: 'Filters' },
+  { id: 'filters', label: 'Filters, Map, Reducer' },
   { id: 'polyfills', label: 'Polyfills' },
   { id: 'object-array-mix', label: 'Object Array Mix' },
   { id: 'functions-closures', label: 'Functions & Closures' },
@@ -25,7 +25,8 @@ const categories = [
   { id: 'promises', label: 'Promises' },
   { id: 'big-o-notation', label: 'Big O Notation' },
   { id: 'weired-js', label: 'Weird JS' },
-  { id: 'oops-concepts', label: 'OOPs Concepts' }
+  { id: 'oops-concepts', label: 'OOPs Concepts' },
+  { id: 'misc', label: 'Misc' }
 ]
 
 export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {

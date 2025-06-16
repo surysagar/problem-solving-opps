@@ -16,6 +16,8 @@ import { bigONotationProblems } from './bigONotationProblems'
 import { weiredJSProblems } from './weiredJSProblems'
 import { oopsConceptsProblems } from './oopsConceptsProblems'
 import { thisKeywordProblems } from './thisKeywordProblems'
+import { miscProblems } from './miscProblems'
+import { promiseProblems } from './promiseProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -34,5 +36,7 @@ export const problems: Record<string, Problem[]> = {
   'big-o-notation': bigONotationProblems,
   'weired-js': weiredJSProblems,
   'oops-concepts': oopsConceptsProblems,
-  'this-keyword': thisKeywordProblems
+  'this-keyword': thisKeywordProblems,
+  'misc': miscProblems,
+  promises: promiseProblems
 } 

@@ -9,6 +9,7 @@ export interface NormalProblem {
     input: string
     output: string
   }[]
+  explanation?: string
 }
 
 export interface QuizProblem {

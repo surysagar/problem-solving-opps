@@ -130,6 +130,15 @@ export default function ProblemDialog({ isOpen, onClose, problem }: ProblemDialo
                         )}
                       </div>
                     </div>
+                    {/* Explanation Section */}
+                    {problem.explanation && (
+                      <div className="space-y-2">
+                        <h3 className="text-sm font-medium">Explanation</h3>
+                        <div className="bg-muted rounded p-4 text-sm text-muted-foreground max-w-md">
+                          {problem.explanation}
+                        </div>
+                      </div>
+                    )}
                   </>
                 )}
               </div>
