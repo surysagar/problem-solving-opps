@@ -26,7 +26,8 @@ const categories = [
   { id: 'big-o-notation', label: 'Big O Notation' },
   { id: 'weired-js', label: 'Weird JS' },
   { id: 'oops-concepts', label: 'OOPs Concepts' },
-  { id: 'misc', label: 'Misc' }
+  { id: 'misc', label: 'Misc' },
+  { id: 'typescript', label: 'TypeScript' }
 ]
 
 export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {
