@@ -96,14 +96,14 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
   // Normal problem rendering
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[90vw] h-[90vh] p-0">
+      <DialogContent className="max-w-[95vw] h-[90vh] p-0 overflow-hidden">
         {/* Title Header */}
-        <div className="px-4 py-1 border-b bg-background">
-          <h2 className="text-lg font-semibold">{problem.title}</h2>
+        <div className="px-4 py-1 border-b bg-background overflow-hidden">
+          <h2 className="text-lg font-semibold break-words">{problem.title}</h2>
         </div>
         {/* Slider Controls */}
         {problems && typeof currentIndex === 'number' && onSlide && (
-          <div className="flex justify-between items-center px-3 py-1 border-b bg-muted">
+          <div className="flex justify-between items-center px-3 py-1 border-b bg-muted overflow-hidden">
             <button
               className="px-2 py-0.5 text-sm rounded disabled:opacity-50 border"
               onClick={() => onSlide(currentIndex - 1)}
@@ -111,7 +111,7 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
             >
               Previous
             </button>
-            <span className="text-sm">{currentIndex + 1} / {problems.length}</span>
+            <span className="text-sm whitespace-nowrap">{currentIndex + 1} / {problems.length}</span>
             <button
               className="px-2 py-0.5 text-sm rounded disabled:opacity-50 border"
               onClick={() => onSlide(currentIndex + 1)}
@@ -121,9 +121,9 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
             </button>
           </div>
         )}
-        <div className="flex h-full">
+        <div className="flex h-full min-w-0">
           {/* Editor Section */}
-          <div className="w-1/2 border-r min-w-[900px] max-w-[1000px]">
+          <div className="w-1/2 border-r min-w-[600px] max-w-[800px] flex-shrink-0">
             <div className="h-[600px] overflow-hidden">
               <CodeEditor
                 value={code}
@@ -133,44 +133,44 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
           </div>
 
           {/* Solution Section */}
-          <div className="flex-1">
-            <div className="h-[600px] overflow-y-auto p-4 overflow-x-hidden">
-              <div className="space-y-6">
+          <div className="flex-1 min-w-0">
+            <div className="h-[600px] overflow-y-auto p-4 overflow-x-hidden w-full">
+              <div className="space-y-6 w-full">
                 {isNormalProblem(problem) && (
                   <>
-                    <div className="space-y-2">
-                      <h3 className="text-sm font-medium">Description</h3>
-                      <p className="text-sm text-muted-foreground whitespace-pre-wrap">
+                    <div className="space-y-2 w-full">
+                      <h3 className="text-sm font-medium break-words">Description</h3>
+                      <p className="text-sm text-muted-foreground whitespace-pre-wrap break-words">
                         {problem.description}
                       </p>
                     </div>
-                    <div className="space-y-2">
-                      <h3 className="text-sm font-medium">Test Cases</h3>
-                      <div className="space-y-2">
+                    <div className="space-y-2 w-full">
+                      <h3 className="text-sm font-medium break-words">Test Cases</h3>
+                      <div className="space-y-2 w-full">
                         {Array.isArray(problem.testCases) && problem.testCases.length > 0 ? (
                           problem.testCases.map((testCase, index) => (
-                            <div key={index} className="rounded-md bg-muted p-4">
-                              <div className="space-y-1">
-                                <p className="text-sm font-medium">Input:</p>
-                                <pre className="text-sm text-muted-foreground">{testCase.input}</pre>
+                            <div key={index} className="rounded-md bg-muted p-4 w-full overflow-hidden">
+                              <div className="space-y-1 w-full">
+                                <p className="text-sm font-medium break-words">Input:</p>
+                                <pre className="text-sm text-muted-foreground break-words whitespace-pre-wrap overflow-x-auto">{testCase.input}</pre>
                               </div>
-                              <div className="mt-2 space-y-1">
-                                <p className="text-sm font-medium">Output:</p>
-                                <pre className="text-sm text-muted-foreground">{testCase.output}</pre>
+                              <div className="mt-2 space-y-1 w-full">
+                                <p className="text-sm font-medium break-words">Output:</p>
+                                <pre className="text-sm text-muted-foreground break-words whitespace-pre-wrap overflow-x-auto">{testCase.output}</pre>
                               </div>
                             </div>
                           ))
                         ) : (
-                          <div className="text-sm text-muted-foreground">No test cases available.</div>
+                          <div className="text-sm text-muted-foreground break-words">No test cases available.</div>
                         )}
                       </div>
                     </div>
                     {/* Explanation Section */}
                     {problem.explanation && (
-                      <div className="space-y-2">
-                        <h3 className="text-sm font-medium">Explanation</h3>
-                        <div className="bg-muted rounded p-4 text-sm text-muted-foreground max-w-md">
-                          {problem.explanation}
+                      <div className="space-y-2 w-full">
+                        <h3 className="text-sm font-medium break-words">Explanation</h3>
+                        <div className="bg-muted rounded p-4 text-sm text-muted-foreground w-full overflow-hidden">
+                          <div className="break-words whitespace-pre-wrap">{problem.explanation}</div>
                         </div>
                       </div>
                     )}
