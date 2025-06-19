@@ -23,7 +23,7 @@ export default function CodeEditor({ value = '', onChange }: CodeEditorProps) {
   return (
     <div className="h-full border rounded-md overflow-hidden">
       <Editor
-        height="100%"
+        height="600px"
         defaultLanguage="javascript"
         value={value}
         onChange={onChange}

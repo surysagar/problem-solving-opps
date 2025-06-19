@@ -96,16 +96,16 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
   // Normal problem rendering
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[90vw] h-[80vh] p-0">
+      <DialogContent className="max-w-[90vw] h-[90vh] p-0">
         {/* Title Header */}
-        <div className="px-6 py-3 border-b bg-background">
-          <h2 className="text-xl font-semibold">{problem.title}</h2>
+        <div className="px-4 py-1 border-b bg-background">
+          <h2 className="text-lg font-semibold">{problem.title}</h2>
         </div>
         {/* Slider Controls */}
         {problems && typeof currentIndex === 'number' && onSlide && (
-          <div className="flex justify-between items-center px-6 py-2 border-b bg-muted">
+          <div className="flex justify-between items-center px-3 py-1 border-b bg-muted">
             <button
-              className="px-3 py-1 rounded disabled:opacity-50 border"
+              className="px-2 py-0.5 text-sm rounded disabled:opacity-50 border"
               onClick={() => onSlide(currentIndex - 1)}
               disabled={currentIndex === 0}
             >
@@ -113,7 +113,7 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
             </button>
             <span className="text-sm">{currentIndex + 1} / {problems.length}</span>
             <button
-              className="px-3 py-1 rounded disabled:opacity-50 border"
+              className="px-2 py-0.5 text-sm rounded disabled:opacity-50 border"
               onClick={() => onSlide(currentIndex + 1)}
               disabled={currentIndex === problems.length - 1}
             >
@@ -125,7 +125,7 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
           {/* Editor Section */}
           <div className="w-1/2 border-r">
             
-            <div className="h-[calc(80vh-40px)]">
+            <div className="h-[600] overflow-auto">
               <CodeEditor
                 value={code}
                 onChange={handleEditorChange}
@@ -136,7 +136,7 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
           {/* Solution Section */}
           <div className="w-1/2">
             
-            <div className="h-[calc(80vh-40px)] overflow-y-auto p-4">
+            <div className="h-[600px] overflow-y-auto p-4">
               <div className="space-y-6">
                 {isNormalProblem(problem) && (
                   <>
