@@ -9,20 +9,27 @@ import MainSidebar from '@/components/MainSidebar'
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>('recursion')
-  const [selectedProblem, setSelectedProblem] = useState<Problem | null>(null)
+  const [currentIndex, setCurrentIndex] = useState<number | null>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
+  const categoryProblems = problems[selectedCategory] || []
+
   const handleProblemClick = (problem: Problem) => {
-    setSelectedProblem(problem)
+    const idx = categoryProblems.findIndex(p => p.id === problem.id)
+    setCurrentIndex(idx)
     setIsDialogOpen(true)
   }
 
   const handleDialogClose = () => {
     setIsDialogOpen(false)
-    setSelectedProblem(null)
+    setCurrentIndex(null)
   }
 
-  const categoryProblems = problems[selectedCategory] || []
+  const handleSlide = (newIndex: number) => {
+    if (newIndex >= 0 && newIndex < categoryProblems.length) {
+      setCurrentIndex(newIndex)
+    }
+  }
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -47,11 +54,14 @@ export default function Home() {
         </div>
       </div>
 
-      {selectedProblem && (
+      {currentIndex !== null && categoryProblems[currentIndex] && (
         <ProblemDialog
           isOpen={isDialogOpen}
           onClose={handleDialogClose}
-          problem={selectedProblem}
+          problem={categoryProblems[currentIndex]}
+          problems={categoryProblems}
+          currentIndex={currentIndex}
+          onSlide={handleSlide}
         />
       )}
     </div>

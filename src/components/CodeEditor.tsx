@@ -25,13 +25,13 @@ export default function CodeEditor({ value = '', onChange }: CodeEditorProps) {
       <Editor
         height="100%"
         defaultLanguage="javascript"
-        defaultValue={value}
+        value={value}
         onChange={onChange}
         theme="darkGreen"
         beforeMount={handleEditorWillMount}
         options={{
           minimap: { enabled: false },
-          fontSize: 14,
+          fontSize: 18,
           lineNumbers: 'on',
           roundedSelection: false,
           scrollBeyondLastLine: false,

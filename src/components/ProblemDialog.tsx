@@ -19,13 +19,22 @@ function isNormalProblem(problem: Problem): problem is import('@/types').NormalP
 }
 
 export default function ProblemDialog({ isOpen, onClose, problem, problems, currentIndex, onSlide }: ProblemDialogProps) {
-  const [code, setCode] = useState('solution' in problem ? problem.solution : '')
+  const [code, setCode] = useState(() => {
+    if (isNormalProblem(problem)) {
+      return problem.solution || ''
+    }
+    return ''
+  })
   const [selected, setSelected] = useState<number | null>(null)
   const [answered, setAnswered] = useState(false)
 
   // Reset code when problem changes
   useEffect(() => {
-    setCode('solution' in problem ? problem.solution : '')
+    if (isNormalProblem(problem)) {
+      setCode(problem.solution || '')
+    } else {
+      setCode('')
+    }
   }, [problem])
 
   const handleEditorChange = (value: string | undefined) => {
@@ -88,6 +97,10 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-[90vw] h-[80vh] p-0">
+        {/* Title Header */}
+        <div className="px-6 py-3 border-b bg-background">
+          <h2 className="text-xl font-semibold">{problem.title}</h2>
+        </div>
         {/* Slider Controls */}
         {problems && typeof currentIndex === 'number' && onSlide && (
           <div className="flex justify-between items-center px-6 py-2 border-b bg-muted">
@@ -111,9 +124,7 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
         <div className="flex h-full">
           {/* Editor Section */}
           <div className="w-1/2 border-r">
-            <div className="h-[40px] border-b px-4 flex items-center bg-muted">
-              <h3 className="text-sm font-medium">Editor</h3>
-            </div>
+            
             <div className="h-[calc(80vh-40px)]">
               <CodeEditor
                 value={code}
@@ -124,9 +135,7 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
 
           {/* Solution Section */}
           <div className="w-1/2">
-            <div className="h-[40px] border-b px-4 flex items-center bg-muted">
-              <h3 className="text-sm font-medium">Solution</h3>
-            </div>
+            
             <div className="h-[calc(80vh-40px)] overflow-y-auto p-4">
               <div className="space-y-6">
                 {isNormalProblem(problem) && (
