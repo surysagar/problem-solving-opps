@@ -8,6 +8,18 @@ interface CodeEditorProps {
 }
 
 export default function CodeEditor({ value = '', onChange }: CodeEditorProps) {
+  const handleEditorWillMount = (monaco: any) => {
+    monaco.editor.defineTheme('darkGreen', {
+      base: 'vs-dark',
+      inherit: true,
+      rules: [],
+      colors: {
+        'editor.background': '#1a472a', // Dark green background
+        'editor.foreground': '#ffffff',
+      }
+    });
+  };
+
   return (
     <div className="h-full border rounded-md overflow-hidden">
       <Editor
@@ -15,7 +27,8 @@ export default function CodeEditor({ value = '', onChange }: CodeEditorProps) {
         defaultLanguage="javascript"
         defaultValue={value}
         onChange={onChange}
-        theme="vs-dark"
+        theme="darkGreen"
+        beforeMount={handleEditorWillMount}
         options={{
           minimap: { enabled: false },
           fontSize: 14,
@@ -27,6 +40,7 @@ export default function CodeEditor({ value = '', onChange }: CodeEditorProps) {
           wordWrap: 'on',
           formatOnPaste: true,
           formatOnType: true,
+          padding: { top: 14 },
         }}
       />
     </div>

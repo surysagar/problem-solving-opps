@@ -27,8 +27,7 @@ const categories = [
   { id: 'weired-js', label: 'Weird JS' },
   { id: 'oops-concepts', label: 'OOPs Concepts' },
   { id: 'misc', label: 'Misc' },
-  { id: 'typescript', label: 'TypeScript' },
-  { id: 'sql-nosql-mongodb-postgress', label: 'SQL vs NoSQL & MongoDB vs Postgres' },
+  { id: 'typescript', label: 'TypeScript' }
 ]
 
 export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {

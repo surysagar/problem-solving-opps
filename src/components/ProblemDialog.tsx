@@ -3,22 +3,30 @@
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { Problem, QuizProblem } from '@/types'
 import CodeEditor from './CodeEditor'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface ProblemDialogProps {
   isOpen: boolean
   onClose: () => void
   problem: Problem
+  problems?: Problem[] // Optional: all problems in the current category
+  currentIndex?: number // Optional: index of the current problem
+  onSlide?: (newIndex: number) => void // Optional: callback to slide
 }
 
 function isNormalProblem(problem: Problem): problem is import('@/types').NormalProblem {
   return (problem as any).description !== undefined;
 }
 
-export default function ProblemDialog({ isOpen, onClose, problem }: ProblemDialogProps) {
+export default function ProblemDialog({ isOpen, onClose, problem, problems, currentIndex, onSlide }: ProblemDialogProps) {
   const [code, setCode] = useState('solution' in problem ? problem.solution : '')
   const [selected, setSelected] = useState<number | null>(null)
   const [answered, setAnswered] = useState(false)
+
+  // Reset code when problem changes
+  useEffect(() => {
+    setCode('solution' in problem ? problem.solution : '')
+  }, [problem])
 
   const handleEditorChange = (value: string | undefined) => {
     if (value !== undefined) {
@@ -80,6 +88,26 @@ export default function ProblemDialog({ isOpen, onClose, problem }: ProblemDialo
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-[90vw] h-[80vh] p-0">
+        {/* Slider Controls */}
+        {problems && typeof currentIndex === 'number' && onSlide && (
+          <div className="flex justify-between items-center px-6 py-2 border-b bg-muted">
+            <button
+              className="px-3 py-1 rounded disabled:opacity-50 border"
+              onClick={() => onSlide(currentIndex - 1)}
+              disabled={currentIndex === 0}
+            >
+              Previous
+            </button>
+            <span className="text-sm">{currentIndex + 1} / {problems.length}</span>
+            <button
+              className="px-3 py-1 rounded disabled:opacity-50 border"
+              onClick={() => onSlide(currentIndex + 1)}
+              disabled={currentIndex === problems.length - 1}
+            >
+              Next
+            </button>
+          </div>
+        )}
         <div className="flex h-full">
           {/* Editor Section */}
           <div className="w-1/2 border-r">
