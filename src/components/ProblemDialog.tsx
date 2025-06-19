@@ -123,9 +123,8 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
         )}
         <div className="flex h-full">
           {/* Editor Section */}
-          <div className="w-1/2 border-r">
-            
-            <div className="h-[600] overflow-auto">
+          <div className="w-1/2 border-r min-w-[900px] max-w-[1000px]">
+            <div className="h-[600px] overflow-hidden">
               <CodeEditor
                 value={code}
                 onChange={handleEditorChange}
@@ -134,9 +133,8 @@ export default function ProblemDialog({ isOpen, onClose, problem, problems, curr
           </div>
 
           {/* Solution Section */}
-          <div className="w-1/2">
-            
-            <div className="h-[600px] overflow-y-auto p-4">
+          <div className="flex-1">
+            <div className="h-[600px] overflow-y-auto p-4 overflow-x-hidden">
               <div className="space-y-6">
                 {isNormalProblem(problem) && (
                   <>

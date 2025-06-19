@@ -41,6 +41,8 @@ export default function CodeEditor({ value = '', onChange }: CodeEditorProps) {
           formatOnPaste: true,
           formatOnType: true,
           padding: { top: 14 },
+          wordWrapColumn: 80,
+          wrappingIndent: 'indent',
         }}
       />
     </div>
