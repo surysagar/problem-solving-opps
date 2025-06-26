@@ -20,6 +20,9 @@ import { miscProblems } from './miscProblems'
 import { promiseProblems } from './promiseProblems'
 import { typescriptProblems } from './typescriptProblems'
 import { awsServicesProblems } from './awsServicesProblems'
+import { architectureIntermediateProblems } from './architectureIntermediateProblems'
+import { architectureAdvancedProblems } from './architectureAdvancedProblems'
+import { architectureDeploymentProblems } from './architectureDeploymentProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -42,5 +45,8 @@ export const problems: Record<string, Problem[]> = {
   'misc': miscProblems,
   promises: promiseProblems,
   'typescript': typescriptProblems,
-  'aws-services': awsServicesProblems
+  'aws-services': awsServicesProblems,
+  'architecture-intermediate': architectureIntermediateProblems,
+  'architecture-advanced': architectureAdvancedProblems,
+  'architecture-deployment': architectureDeploymentProblems
 } 

@@ -1,6 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
+import { useState } from 'react'
 
 interface MainSidebarProps {
   onSelectCategory: (category: string) => void
@@ -31,7 +32,15 @@ const categories = [
   { id: 'aws-services', label: 'AWS Services' }
 ]
 
+const architectureSubCategories = [
+  { id: 'architecture-intermediate', label: 'Intermediate' },
+  { id: 'architecture-advanced', label: 'Advanced' },
+  { id: 'architecture-deployment', label: 'Deployment' }
+]
+
 export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {
+  const [isArchitectureExpanded, setIsArchitectureExpanded] = useState(false)
+
   return (
     <div className="h-full py-4">
       <div className="space-y-1">
@@ -48,6 +57,44 @@ export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {
             {category.label}
           </button>
         ))}
+        
+        {/* Architecture Accordion */}
+        <div className="border-t border-border mt-2 pt-2">
+          <button
+            onClick={() => setIsArchitectureExpanded(!isArchitectureExpanded)}
+            className={cn(
+              'w-full px-4 py-2 text-sm text-left transition-colors flex items-center justify-between',
+              'hover:bg-accent hover:text-accent-foreground',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+            )}
+          >
+            <span>Architecture</span>
+            <span className={cn(
+              'transition-transform duration-200',
+              isArchitectureExpanded ? 'rotate-180' : ''
+            )}>
+              ▼
+            </span>
+          </button>
+          
+          {isArchitectureExpanded && (
+            <div className="ml-4 space-y-1">
+              {architectureSubCategories.map((subCategory) => (
+                <button
+                  key={subCategory.id}
+                  onClick={() => onSelectCategory(subCategory.id)}
+                  className={cn(
+                    'w-full px-4 py-2 text-sm text-left transition-colors',
+                    'hover:bg-accent hover:text-accent-foreground',
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+                  )}
+                >
+                  {subCategory.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
