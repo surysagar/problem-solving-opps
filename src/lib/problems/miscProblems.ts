@@ -97,5 +97,171 @@ fetch(url)
   });`,
     testCases: [],
     explanation: `The Response object represents the response to a Fetch API request.\n\n- Key properties include status, ok, redirected, type, url, and headers.\n- Body consumption methods (json, text, blob, formData, arrayBuffer) return Promises and can only be used once per response.\n- Use .clone() if you need to read the body more than once.\n- You can stream large responses using response.body.getReader().\n- Always check response.ok and content-type before parsing.\n\nThis pattern is essential for robust web API consumption in modern JavaScript.`
+  },
+  {
+    id: 'misc-4',
+    title: 'Shadow DOM vs Virtual DOM vs Incremental DOM',
+    description: 'Understanding the differences between Shadow DOM, Virtual DOM, and Incremental DOM, plus latest trends in Angular and React.',
+    difficulty: 'Hard',
+    category: 'misc',
+    solution: `// 1. SHADOW DOM (Web Components)
+// Encapsulated DOM tree attached to an element
+class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    const shadow = this.attachShadow({mode: 'open'});
+    shadow.innerHTML = \`
+      <style>
+        .internal { color: red; } /* Scoped to shadow DOM */
+      </style>
+      <div class="internal">Shadow DOM content</div>
+    \`;
+  }
+}
+customElements.define('my-element', MyElement);
+
+// 2. VIRTUAL DOM (React)
+// JavaScript representation of actual DOM
+const virtualElement = {
+  type: 'div',
+  props: {
+    className: 'container',
+    children: [
+      {
+        type: 'h1',
+        props: { children: 'Hello Virtual DOM' }
+      }
+    ]
+  }
+};
+
+// React's reconciliation process
+function reconcile(oldVNode, newVNode) {
+  // Compare virtual nodes and update real DOM efficiently
+  if (oldVNode.type !== newVNode.type) {
+    // Replace entire node
+    return replaceNode(oldVNode, newVNode);
+  }
+  // Update props and children
+  updateProps(oldVNode.props, newVNode.props);
+  reconcileChildren(oldVNode.children, newVNode.children);
+}
+
+// 3. INCREMENTAL DOM (Angular, Google Closure)
+// Direct DOM manipulation with minimal memory overhead
+function renderIncremental() {
+  elementOpen('div', null, null, 'class', 'container');
+  elementOpen('h1');
+  text('Hello Incremental DOM');
+  elementClose('h1');
+  elementClose('div');
+}
+
+// Angular's Ivy renderer (Incremental DOM based)
+@Component({
+  template: \`
+    <div class="container">
+      <h1>{{ title }}</h1>
+    </div>
+  \`
+})
+class MyComponent {
+  title = 'Hello Angular Ivy';
+}
+
+// 4. LATEST TRENDS
+
+// React 18+ (Concurrent Features)
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />); // Concurrent rendering
+
+// React Server Components (RSC)
+// Server-side rendered components with client hydration
+async function ServerComponent() {
+  const data = await fetchData(); // Runs on server
+  return <div>{data}</div>;
+}
+
+// Angular 17+ (Standalone Components + Signals)
+@Component({
+  standalone: true,
+  template: \`
+    <div>{{ count() }}</div>
+    <button (click)="increment()">+</button>
+  \`
+})
+class CounterComponent {
+  count = signal(0);
+  
+  increment() {
+    this.count.update(c => c + 1);
+  }
+}
+
+// Vue 3 Composition API + Vite
+const { ref, computed } = Vue;
+const count = ref(0);
+const double = computed(() => count.value * 2);
+
+// Svelte 5 (Runes - New Reactivity System)
+let count = $state(0);
+let double = $derived(count * 2);`,
+    testCases: [],
+    explanation: `DOM Technologies Comparison:
+
+1. SHADOW DOM:
+- Web standard for encapsulation
+- Provides style and DOM isolation
+- Used in Web Components
+- Scopes CSS and prevents style leakage
+- Real DOM tree attached to elements
+
+2. VIRTUAL DOM:
+- JavaScript representation of real DOM
+- Used by React, Vue 2, and others
+- Diffing algorithm compares virtual trees
+- Batches DOM updates for performance
+- Memory overhead due to keeping virtual tree
+
+3. INCREMENTAL DOM:
+- Direct DOM manipulation approach
+- Used by Angular Ivy, Google Closure
+- Minimal memory footprint
+- No virtual tree storage
+- Instructions-based rendering
+
+LATEST TRENDS:
+
+ANGULAR (v17+):
+- Ivy renderer (Incremental DOM)
+- Standalone components
+- Signals for fine-grained reactivity
+- Server-side rendering improvements
+- Deferrable views for performance
+
+REACT (v18+):
+- Concurrent features
+- Server Components (RSC)
+- Automatic batching
+- Suspense for data fetching
+- Streaming SSR
+
+VUE 3:
+- Composition API
+- Vite build tool
+- Teleport and Fragments
+- Better TypeScript support
+
+SVELTE 5:
+- Runes reactivity system
+- Compile-time optimization
+- Smaller bundle sizes
+- Better performance
+
+The trend is moving toward:
+- Better performance (Incremental DOM, Runes)
+- Server-side rendering (RSC, SSR)
+- Fine-grained reactivity (Signals, Runes)
+- Compile-time optimizations (Svelte, Vite)`
   }
 ]; 

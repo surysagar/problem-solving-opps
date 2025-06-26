@@ -19,6 +19,7 @@ import { thisKeywordProblems } from './thisKeywordProblems'
 import { miscProblems } from './miscProblems'
 import { promiseProblems } from './promiseProblems'
 import { typescriptProblems } from './typescriptProblems'
+import { awsServicesProblems } from './awsServicesProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -40,5 +41,6 @@ export const problems: Record<string, Problem[]> = {
   'this-keyword': thisKeywordProblems,
   'misc': miscProblems,
   promises: promiseProblems,
-  'typescript': typescriptProblems
+  'typescript': typescriptProblems,
+  'aws-services': awsServicesProblems
 } 
