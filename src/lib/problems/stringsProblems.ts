@@ -2,6 +2,16 @@ import { Problem } from '@/types'
 
 export const stringsProblems: Problem[] = [
   {
+    id: 'custom-1750999043112',
+    title: 'dummy1',
+    description: 'dummy sedc',
+    difficulty: 'Hard',
+    category: 'strings',
+    solution: `sddsddds`,
+    testCases: [],
+    explanation: 'practice'
+  },
+  {
     id: '1',
     title: 'String Length',
     description: 'Find the length of a string',
