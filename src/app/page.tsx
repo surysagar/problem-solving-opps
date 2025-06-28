@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Problem } from '@/types'
 import { problems } from '@/lib/problems'
 import ProblemCard from '@/components/ProblemCard'
@@ -17,10 +17,6 @@ export default function Home() {
   const [isCodeGeneratorOpen, setIsCodeGeneratorOpen] = useState(false)
   const [customProblems, setCustomProblems] = useState<Record<string, Problem[]>>({})
   const [selectedProblemForCode, setSelectedProblemForCode] = useState<Problem | null>(null)
-
-  
-
-  
 
   const baseProblems = problems[selectedCategory] || []
   const userProblems = customProblems[selectedCategory] || []
