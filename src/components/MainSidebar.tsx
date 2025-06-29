@@ -29,7 +29,8 @@ const categories = [
   { id: 'oops-concepts', label: 'OOPs Concepts' },
   { id: 'misc', label: 'Misc' },
   { id: 'typescript', label: 'TypeScript' },
-  { id: 'aws-services', label: 'AWS Services' }
+  { id: 'aws-services', label: 'AWS Services' },
+  { id: 'react-next', label: 'React-Next' }
 ]
 
 const architectureSubCategories = [

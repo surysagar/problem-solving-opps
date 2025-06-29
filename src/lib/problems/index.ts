@@ -23,6 +23,7 @@ import { awsServicesProblems } from './awsServicesProblems'
 import { architectureIntermediateProblems } from './architectureIntermediateProblems'
 import { architectureAdvancedProblems } from './architectureAdvancedProblems'
 import { architectureDeploymentProblems } from './architectureDeploymentProblems'
+import { reactNextProblems } from './reactNextProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -48,5 +49,6 @@ export const problems: Record<string, Problem[]> = {
   'aws-services': awsServicesProblems,
   'architecture-intermediate': architectureIntermediateProblems,
   'architecture-advanced': architectureAdvancedProblems,
-  'architecture-deployment': architectureDeploymentProblems
+  'architecture-deployment': architectureDeploymentProblems,
+  'react-next': reactNextProblems
 } 
