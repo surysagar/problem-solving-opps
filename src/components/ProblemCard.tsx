@@ -11,12 +11,12 @@ interface ProblemCardProps {
 }
 
 export default function ProblemCard({ problem, onClick, onDelete, onGenerateCode }: ProblemCardProps) {
-  const isCustomCard = problem.id.startsWith('custom-')
+  const isCustomCard = problem.id && typeof problem.id === 'string' && problem.id.startsWith('custom-')
   const isNormalProblem = 'difficulty' in problem
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation()
-    if (onDelete && isCustomCard) {
+    if (onDelete && isCustomCard && problem.id && typeof problem.id === 'string') {
       onDelete(problem.id)
     }
   }

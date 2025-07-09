@@ -9,13 +9,13 @@ interface CodeEditorProps {
 
 export default function CodeEditor({ value = '', onChange }: CodeEditorProps) {
   const handleEditorWillMount = (monaco: any) => {
-    monaco.editor.defineTheme('darkGreen', {
-      base: 'vs-dark',
+    monaco.editor.defineTheme('whiteEditor', {
+      base: 'vs',
       inherit: true,
       rules: [],
       colors: {
-        'editor.background': '#1a472a', // Dark green background
-        'editor.foreground': '#ffffff',
+        'editor.background': '#ffffff', // White background
+        'editor.foreground': '#000000', // Black text
       }
     });
   };
@@ -27,7 +27,7 @@ export default function CodeEditor({ value = '', onChange }: CodeEditorProps) {
         defaultLanguage="javascript"
         value={value}
         onChange={onChange}
-        theme="darkGreen"
+        theme="whiteEditor"
         beforeMount={handleEditorWillMount}
         options={{
           minimap: { enabled: false },

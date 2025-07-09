@@ -30,7 +30,13 @@ const categories = [
   { id: 'misc', label: 'Misc' },
   { id: 'typescript', label: 'TypeScript' },
   { id: 'aws-services', label: 'AWS Services' },
-  { id: 'react-next', label: 'React-Next' }
+  { id: 'react-next', label: 'React-Next' },
+  { id: 'trading', label: 'TRADING' },
+  { id: 'responsibilities-communication', label: 'RESPONSIBILITIES-COMMUNICATION' },
+  { id: 'css', label: 'CSS' },
+  { id: 'jobs', label: 'JOBS' },
+  { id: 'nodejs', label: 'NODEJS' }
+
 ]
 
 const architectureSubCategories = [

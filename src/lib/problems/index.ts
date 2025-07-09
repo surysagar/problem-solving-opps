@@ -24,6 +24,11 @@ import { architectureIntermediateProblems } from './architectureIntermediateProb
 import { architectureAdvancedProblems } from './architectureAdvancedProblems'
 import { architectureDeploymentProblems } from './architectureDeploymentProblems'
 import { reactNextProblems } from './reactNextProblems'
+import { tradingProblems } from './tradingProblems'
+import { responsibilitiesCommunicationProblems } from './responsibilitiesCommunicationProblems'
+import { cssProblems } from './cssProblems'
+import { jobsProblems } from './jobsProblems'
+import { nodejsProblems } from './nodejsProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -50,5 +55,10 @@ export const problems: Record<string, Problem[]> = {
   'architecture-intermediate': architectureIntermediateProblems,
   'architecture-advanced': architectureAdvancedProblems,
   'architecture-deployment': architectureDeploymentProblems,
-  'react-next': reactNextProblems
+  'react-next': reactNextProblems,
+  'trading': tradingProblems,
+  'responsibilities-communication': responsibilitiesCommunicationProblems,
+  'css': cssProblems,
+  'jobs': jobsProblems,
+  'nodejs': nodejsProblems
 } 
