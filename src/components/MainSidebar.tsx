@@ -34,7 +34,8 @@ const categories = [
   { id: 'trading', label: 'TRADING' },
   { id: 'responsibilities-communication', label: 'RESPONSIBILITIES-COMMUNICATION' },
   { id: 'css', label: 'CSS' },
-  { id: 'jobs', label: 'JOBS' }
+  { id: 'jobs', label: 'JOBS' },
+  // { id: 'nextjs', label: 'Next.js' }
 ]
 
 const architectureSubCategories = [

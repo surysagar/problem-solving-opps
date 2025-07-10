@@ -16581,5 +16581,228 @@ The Event Loop is the heart of Node.js's asynchronous architecture:
 - **Resource utilization**: Efficient CPU and memory usage
 
 Understanding these concepts is crucial for building efficient Node.js applications and optimizing performance. The event loop, thread pool, and event-driven architecture work together to provide the non-blocking, asynchronous behavior that makes Node.js particularly well-suited for I/O-intensive applications.`
+  },
+  {
+    id: 'nodegen-1',
+    title: 'How to Optimize SQL, PostgreSQL, and MongoDB Queries',
+    description: 'Short tips and examples for optimizing queries in SQL, PostgreSQL, and MongoDB.',
+    difficulty: 'Medium',
+    category: 'nodejs',
+    solution: `// SQL Optimization Example
+SELECT * FROM users WHERE email = 'test@example.com';
+-- Add an index on the 'email' column for faster lookups
+
+// PostgreSQL Optimization Example
+EXPLAIN ANALYZE SELECT * FROM orders WHERE status = 'shipped';
+-- Use EXPLAIN to analyze query plans and add indexes as needed
+
+// MongoDB Optimization Example
+db.users.createIndex({ email: 1 });
+db.users.find({ email: 'test@example.com' });
+// Use indexes and project only needed fields: db.users.find({ email: 'test@example.com' }, { name: 1 })`,
+    testCases: [
+      {
+        input: `CREATE INDEX idx_email ON users(email);
+SELECT name, email FROM users WHERE email = 'test@example.com';`,
+        output: `// Uses index for faster lookup`
+      },
+      {
+        input: `db.users.createIndex({ email: 1 });
+db.users.find({ email: 'test@example.com' }, { name: 1, email: 1 });`,
+        output: `// Uses index and projects only needed fields`
+      }
+    ],
+    explanation: `**Tips:**
+- Use indexes on columns/fields used in WHERE, JOIN, or SORT.
+- Avoid SELECT *; fetch only needed columns/fields.
+- Use query analyzers (EXPLAIN, MongoDB explain()) to find slow parts.
+- In MongoDB, use projection to limit returned fields.
+- Avoid N+1 queries (fetching in loops).
+- Batch updates/inserts when possible.`
+  },
+  {
+    id: 'nodegen-2',
+    title: 'How Database Engine Processes a Query',
+    description: 'Short scenario and example of how a database engine processes a query.',
+    difficulty: 'Easy',
+    category: 'nodejs',
+    solution: `-- Scenario: Fetching a user by email
+SELECT * FROM users WHERE email = 'test@example.com';
+
+-- Steps:
+-- 1. Parse SQL
+-- 2. Check permissions
+-- 3. Build query plan (use index if available)
+-- 4. Fetch data from disk/memory
+-- 5. Return result to client`,
+    testCases: [
+      {
+        input: `SELECT * FROM users WHERE email = 'test@example.com';`,
+        output: `// 1. Parse SQL
+// 2. Check permissions  
+// 3. Use index on email column
+// 4. Fetch row from disk/memory
+// 5. Return result`
+      }
+    ],
+    explanation: `**Example:**
+- You run: SELECT * FROM users WHERE email = 'test@example.com';
+- The engine parses the query, checks permissions, uses an index if present, fetches the row, and returns it.
+- If no index, it scans the whole table (slower).`
+  },
+  {
+    id: 'nodegen-3',
+    title: 'Caching in DB: Avoiding Repeated Data Fetch',
+    description: 'Short answer and example for caching in databases to avoid fetching the same data repeatedly.',
+    difficulty: 'Easy',
+    category: 'nodejs',
+    solution: `// Example: Using Redis as a cache for user profiles
+const redis = require('redis');
+const client = redis.createClient();
+
+function getUserProfile(userId) {
+  client.get(userId, (err, cached) => {
+    if (cached) {
+      return JSON.parse(cached); // Return from cache
+    }
+    // Fetch from DB and cache it
+    db.query('SELECT * FROM users WHERE id = ?', [userId], (err, result) => {
+      client.set(userId, JSON.stringify(result));
+      return result;
+    });
+  });
+}`,
+    testCases: [
+      {
+        input: `// First request
+getUserProfile(123); // Fetches from DB and caches
+
+// Second request  
+getUserProfile(123); // Returns from cache`,
+        output: `// First: DB query + cache set
+// Second: Cache hit (faster)`
+      }
+    ],
+    explanation: `**Caching:**
+- Store frequently accessed data in memory (e.g., Redis, Memcached).
+- On request, check cache first; if not found, fetch from DB and cache it.
+- Reduces DB load and speeds up response time.`
+  },
+  {
+    id: 'nodegen-4',
+    title: 'Should Every API Pass JWT Token? Steps',
+    description: 'Step-by-step: Should every API pass a JWT token from backend?',
+    difficulty: 'Easy',
+    category: 'nodejs',
+    solution: `// Steps for JWT in APIs
+1. Client logs in and receives JWT from backend
+2. Client stores JWT (in memory, localStorage, etc.)
+3. For every API request, client sends JWT in Authorization header
+4. Backend verifies JWT on each request
+5. If valid, backend processes request; else, returns 401 Unauthorized`,
+    testCases: [
+      {
+        input: `// Login request
+POST /login
+{ "email": "user@example.com", "password": "password" }
+
+// Protected API request
+GET /api/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`,
+        output: `// Login: Returns JWT token
+// Profile: Verifies JWT and returns user data`
+      }
+    ],
+    explanation: `**JWT Flow:**
+- Every protected API should require a JWT in the Authorization header.
+- Backend should verify JWT for each request to ensure security.
+- Public APIs (login, register) may not require JWT.`
+  },
+  {
+    id: 'nodegen-5',
+    title: 'Why Sessions Are Needed?',
+    description: 'Simple explanation and example for why sessions are needed in web apps.',
+    difficulty: 'Easy',
+    category: 'nodejs',
+    solution: `// Example: Session usage in Express
+const session = require('express-session');
+app.use(session({ secret: 'mysecret', resave: false, saveUninitialized: true }));
+
+app.post('/login', (req, res) => {
+  // On successful login
+  req.session.userId = user.id;
+  res.send('Logged in');
+});
+
+app.get('/dashboard', (req, res) => {
+  if (req.session.userId) {
+    res.send('Welcome!');
+  } else {
+    res.status(401).send('Please log in');
+  }
+});`,
+    testCases: [
+      {
+        input: `// User logs in
+POST /login
+{ "email": "user@example.com", "password": "password" }
+
+// Session is created
+req.session.userId = 123;
+
+// User visits dashboard
+GET /dashboard
+// Session contains userId, so user is authenticated`,
+        output: `// Login: Creates session with userId
+// Dashboard: Checks session and allows access`
+      }
+    ],
+    explanation: `**Why Sessions?**
+- Sessions store user data between requests (e.g., login state).
+- HTTP is stateless; sessions allow tracking users across requests.
+- Used for authentication, shopping carts, etc.`
+  },
+  {
+    id: 'nodegen-6',
+    title: 'Validation of Request Body Params (Payload)',
+    description: 'How to validate request body parameters in Node.js APIs.',
+    difficulty: 'Easy',
+    category: 'nodejs',
+    solution: `// Example: Using express-validator for payload validation
+const { body, validationResult } = require('express-validator');
+
+app.post('/register', [
+  body('email').isEmail(),
+  body('password').isLength({ min: 6 })
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  // Proceed with registration
+});`,
+    testCases: [
+      {
+        input: `// Valid request
+POST /register
+{
+  "email": "user@example.com",
+  "password": "password123"
 }
+
+// Invalid request
+POST /register
+{
+  "email": "invalid-email",
+  "password": "123"
+}`,
+        output: `// Valid: Proceeds with registration
+// Invalid: Returns 400 with validation errors`
+      }
+    ],
+    explanation: `**Validation:**
+- Always validate incoming data to prevent bad/malicious input.
+- Use libraries like express-validator, Joi, or Yup.
+- Return errors if validation fails; proceed if valid.`
+  }
 ]
