@@ -28,7 +28,7 @@ import { tradingProblems } from './tradingProblems'
 import { responsibilitiesCommunicationProblems } from './responsibilitiesCommunicationProblems'
 import { cssProblems } from './cssProblems'
 import { jobsProblems } from './jobsProblems'
-import { nodejsProblems } from './nodejsProblems'
+import { nodeGeneralProblems } from './nodeGeneral'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -60,5 +60,5 @@ export const problems: Record<string, Problem[]> = {
   'responsibilities-communication': responsibilitiesCommunicationProblems,
   'css': cssProblems,
   'jobs': jobsProblems,
-  'nodejs': nodejsProblems
+  'node1-general': nodeGeneralProblems
 } 

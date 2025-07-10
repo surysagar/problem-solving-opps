@@ -34,9 +34,7 @@ const categories = [
   { id: 'trading', label: 'TRADING' },
   { id: 'responsibilities-communication', label: 'RESPONSIBILITIES-COMMUNICATION' },
   { id: 'css', label: 'CSS' },
-  { id: 'jobs', label: 'JOBS' },
-  { id: 'nodejs', label: 'NODEJS' }
-
+  { id: 'jobs', label: 'JOBS' }
 ]
 
 const architectureSubCategories = [
@@ -45,8 +43,15 @@ const architectureSubCategories = [
   { id: 'architecture-deployment', label: 'Deployment' }
 ]
 
+const nodejsSubCategories = [
+  { id: 'node1-general', label: 'General' },
+  { id: 'node2-basic', label: 'Basic' },
+  { id: 'node3-advanced', label: 'Advanced' }
+]
+
 export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {
   const [isArchitectureExpanded, setIsArchitectureExpanded] = useState(false)
+  const [isNodejsExpanded, setIsNodejsExpanded] = useState(false)
 
   return (
     <div className="h-full py-4">
@@ -87,6 +92,44 @@ export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {
           {isArchitectureExpanded && (
             <div className="ml-4 space-y-1">
               {architectureSubCategories.map((subCategory) => (
+                <button
+                  key={subCategory.id}
+                  onClick={() => onSelectCategory(subCategory.id)}
+                  className={cn(
+                    'w-full px-4 py-2 text-sm text-left transition-colors',
+                    'hover:bg-accent hover:text-accent-foreground',
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+                  )}
+                >
+                  {subCategory.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Node.js Accordion */}
+        <div className="border-t border-border mt-2 pt-2">
+          <button
+            onClick={() => setIsNodejsExpanded(!isNodejsExpanded)}
+            className={cn(
+              'w-full px-4 py-2 text-sm text-left transition-colors flex items-center justify-between',
+              'hover:bg-accent hover:text-accent-foreground',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+            )}
+          >
+            <span>NODEJS</span>
+            <span className={cn(
+              'transition-transform duration-200',
+              isNodejsExpanded ? 'rotate-180' : ''
+            )}>
+              ▼
+            </span>
+          </button>
+          
+          {isNodejsExpanded && (
+            <div className="ml-4 space-y-1">
+              {nodejsSubCategories.map((subCategory) => (
                 <button
                   key={subCategory.id}
                   onClick={() => onSelectCategory(subCategory.id)}
