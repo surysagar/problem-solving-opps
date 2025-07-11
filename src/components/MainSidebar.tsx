@@ -35,7 +35,7 @@ const categories = [
   { id: 'responsibilities-communication', label: 'RESPONSIBILITIES-COMMUNICATION' },
   { id: 'css', label: 'CSS' },
   { id: 'jobs', label: 'JOBS' },
-  // { id: 'nextjs', label: 'Next.js' }
+  { id: 'nextjs', label: 'Next.js' }
 ]
 
 const architectureSubCategories = [
@@ -45,9 +45,7 @@ const architectureSubCategories = [
 ]
 
 const nodejsSubCategories = [
-  { id: 'node1-general', label: 'General' },
-  { id: 'node2-basic', label: 'Basic' },
-  { id: 'node3-advanced', label: 'Advanced' }
+  { id: 'node1-general', label: 'General' }
 ]
 
 export default function MainSidebar({ onSelectCategory }: MainSidebarProps) {
