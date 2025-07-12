@@ -387,5 +387,340 @@ db.grantRolesToUser('appuser', ['readWriteAppData']);
 `,
     testCases: [],
     explanation: 'PostgreSQL offers row-level security and fine-grained permissions. MongoDB uses role-based access control with collection-level permissions.'
+  },
+  // --- Database Operations ---
+  {
+    id: 'pg-mongo-create-table',
+    title: 'CREATE TABLE vs Create Collection',
+    description: 'How to create a table in PostgreSQL and a collection in MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100),
+  age INT
+);
+
+// MongoDB
+// No explicit schema needed, collection is created on first insert
+// Optionally, you can create with validation:
+db.createCollection('users', {
+  validator: { $jsonSchema: { bsonType: 'object', required: ['name', 'age'] } }
+});
+`,
+    testCases: [],
+    explanation: 'PostgreSQL requires a schema for tables. MongoDB collections are schema-less by default, but you can add validation.'
+  },
+  {
+    id: 'pg-mongo-insert',
+    title: 'INSERT INTO vs insertOne',
+    description: 'Insert a record in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+INSERT INTO users (name, age) VALUES ('Alice', 30);
+
+// MongoDB
+db.users.insertOne({ name: 'Alice', age: 30 });
+`,
+    testCases: [],
+    explanation: 'Both databases allow inserting records, but MongoDB uses JSON-like documents.'
+  },
+  {
+    id: 'pg-mongo-select',
+    title: 'SELECT vs find',
+    description: 'Fetch data from PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT * FROM users WHERE age > 25;
+
+// MongoDB
+db.users.find({ age: { $gt: 25 } });
+`,
+    testCases: [],
+    explanation: 'SQL uses SELECT, MongoDB uses find with JSON-style queries.'
+  },
+  {
+    id: 'pg-mongo-update',
+    title: 'UPDATE vs updateOne',
+    description: 'Update a record in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+UPDATE users SET age = 31 WHERE name = 'Alice';
+
+// MongoDB
+db.users.updateOne({ name: 'Alice' }, { $set: { age: 31 } });
+`,
+    testCases: [],
+    explanation: 'UPDATE in SQL, updateOne in MongoDB with $set.'
+  },
+  {
+    id: 'pg-mongo-delete',
+    title: 'DELETE vs deleteOne',
+    description: 'Delete a record in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+DELETE FROM users WHERE name = 'Alice';
+
+// MongoDB
+db.users.deleteOne({ name: 'Alice' });
+`,
+    testCases: [],
+    explanation: 'DELETE in SQL, deleteOne in MongoDB.'
+  },
+  {
+    id: 'pg-mongo-add-column',
+    title: 'ALTER TABLE ADD COLUMN vs Add Field',
+    description: 'Add a column/field in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+ALTER TABLE users ADD COLUMN email VARCHAR(100);
+
+// MongoDB (no schema change needed, just update a document)
+db.users.updateMany({}, { $set: { email: null } });
+`,
+    testCases: [],
+    explanation: 'PostgreSQL requires ALTER TABLE, MongoDB just adds the field to documents.'
+  },
+  {
+    id: 'pg-mongo-drop-column',
+    title: 'ALTER TABLE DROP COLUMN vs Remove Field',
+    description: 'Remove a column/field in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+ALTER TABLE users DROP COLUMN email;
+
+// MongoDB
+// Remove field from all documents
+db.users.updateMany({}, { $unset: { email: '' } });
+`,
+    testCases: [],
+    explanation: 'ALTER TABLE DROP COLUMN in SQL, $unset in MongoDB.'
+  },
+  {
+    id: 'pg-mongo-drop-table',
+    title: 'DROP TABLE vs drop',
+    description: 'Drop a table/collection in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+DROP TABLE users;
+
+// MongoDB
+db.users.drop();
+`,
+    testCases: [],
+    explanation: 'DROP TABLE in SQL, drop() in MongoDB.'
+  },
+  // --- Syntax/Query Operations ---
+  {
+    id: 'pg-mongo-operators',
+    title: 'Operators: WHERE, AND, OR, LIKE, IN',
+    description: 'Comparison and logical operators in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT * FROM users WHERE age > 25 AND name LIKE 'A%';
+SELECT * FROM users WHERE age IN (25, 30, 35);
+
+// MongoDB
+db.users.find({ age: { $gt: 25 }, name: { $regex: /^A/ } });
+db.users.find({ age: { $in: [25, 30, 35] } });
+`,
+    testCases: [],
+    explanation: 'SQL uses WHERE, AND, OR, LIKE, IN. MongoDB uses $gt, $in, $regex, etc.'
+  },
+  {
+    id: 'pg-mongo-join',
+    title: 'JOIN vs $lookup',
+    description: 'How to join tables/collections in PostgreSQL and MongoDB.',
+    difficulty: 'Medium',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT users.name, orders.total
+FROM users
+JOIN orders ON users.id = orders.user_id;
+
+// MongoDB (aggregation with $lookup)
+db.users.aggregate([
+  {
+    $lookup: {
+      from: 'orders',
+      localField: '_id',
+      foreignField: 'user_id',
+      as: 'orders'
+    }
+  }
+]);
+`,
+    testCases: [],
+    explanation: 'SQL uses JOIN, MongoDB uses $lookup in aggregation.'
+  },
+  {
+    id: 'pg-mongo-index',
+    title: 'CREATE INDEX vs createIndex',
+    description: 'Create an index in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+CREATE INDEX idx_name ON users(name);
+
+// MongoDB
+db.users.createIndex({ name: 1 });
+`,
+    testCases: [],
+    explanation: 'CREATE INDEX in SQL, createIndex in MongoDB.'
+  },
+  {
+    id: 'pg-mongo-count',
+    title: 'COUNT: COUNT(*) vs countDocuments()',
+    description: 'Count records in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT COUNT(*) FROM users;
+
+// MongoDB
+db.users.countDocuments({});
+`,
+    testCases: [],
+    explanation: 'COUNT(*) in SQL, countDocuments in MongoDB.'
+  },
+  {
+    id: 'pg-mongo-group-by',
+    title: 'GROUP BY vs $group',
+    description: 'Group and aggregate data in PostgreSQL and MongoDB.',
+    difficulty: 'Medium',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT age, COUNT(*) FROM users GROUP BY age;
+
+// MongoDB
+db.users.aggregate([
+  { $group: { _id: '$age', count: { $sum: 1 } } }
+]);
+`,
+    testCases: [],
+    explanation: 'GROUP BY in SQL, $group in MongoDB aggregation.'
+  },
+  {
+    id: 'pg-mongo-order-by',
+    title: 'ORDER BY vs sort()',
+    description: 'Sort data in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT * FROM users ORDER BY age DESC;
+
+// MongoDB
+db.users.find().sort({ age: -1 });
+`,
+    testCases: [],
+    explanation: 'ORDER BY in SQL, sort() in MongoDB.'
+  },
+  {
+    id: 'pg-mongo-limit',
+    title: 'LIMIT vs limit()',
+    description: 'Limit the number of results in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT * FROM users LIMIT 5;
+
+// MongoDB
+db.users.find().limit(5);
+`,
+    testCases: [],
+    explanation: 'LIMIT in SQL, limit() in MongoDB.'
+  },
+  {
+    id: 'pg-mongo-distinct',
+    title: 'DISTINCT vs distinct()',
+    description: 'Get unique values in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT DISTINCT age FROM users;
+
+// MongoDB
+db.users.distinct('age');
+`,
+    testCases: [],
+    explanation: 'DISTINCT in SQL, distinct() in MongoDB.'
+  },
+  {
+    id: 'pg-mongo-avg-sum',
+    title: 'AVG, SUM, MIN, MAX',
+    description: 'Aggregate functions in PostgreSQL and MongoDB.',
+    difficulty: 'Easy',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT AVG(age), SUM(age), MIN(age), MAX(age) FROM users;
+
+// MongoDB
+db.users.aggregate([
+  {
+    $group: {
+      _id: null,
+      avgAge: { $avg: '$age' },
+      sumAge: { $sum: '$age' },
+      minAge: { $min: '$age' },
+      maxAge: { $max: '$age' }
+    }
+  }
+]);
+`,
+    testCases: [],
+    explanation: 'Aggregate functions in SQL, $group with operators in MongoDB.'
+  },
+  {
+    id: 'pg-mongo-union',
+    title: 'UNION vs $unionWith',
+    description: 'Combine results from multiple queries in PostgreSQL and MongoDB.',
+    difficulty: 'Medium',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT name FROM users
+UNION
+SELECT name FROM admins;
+
+// MongoDB
+db.users.aggregate([
+  { $unionWith: 'admins' },
+  { $project: { name: 1 } }
+]);
+`,
+    testCases: [],
+    explanation: 'UNION in SQL, $unionWith in MongoDB aggregation.'
+  },
+  {
+    id: 'pg-mongo-case',
+    title: 'CASE vs $cond',
+    description: 'Conditional logic in PostgreSQL and MongoDB.',
+    difficulty: 'Medium',
+    category: 'postgresql-mongodb',
+    solution: `// PostgreSQL
+SELECT name, CASE WHEN age >= 18 THEN 'Adult' ELSE 'Minor' END as status FROM users;
+
+// MongoDB
+db.users.aggregate([
+  {
+    $project: {
+      name: 1,
+      status: {
+        $cond: [ { $gte: ['$age', 18] }, 'Adult', 'Minor' ]
+      }
+    }
+  }
+]);
+`,
+    testCases: [],
+    explanation: 'CASE in SQL, $cond in MongoDB aggregation.'
   }
 ] 

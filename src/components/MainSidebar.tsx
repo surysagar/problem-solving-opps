@@ -47,6 +47,7 @@ const architectureSubCategories = [
 
 const nodejsSubCategories = [
   { id: 'node1-basic', label: 'Basic' },
+  { id: 'node1-slides', label: 'SLIDES' },
   { id: 'node1-general', label: 'General' }
 ]
 
