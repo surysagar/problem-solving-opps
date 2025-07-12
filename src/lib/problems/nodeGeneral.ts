@@ -107,14 +107,8 @@ console.log('8. End');
 // 5. Timer in file callback`,
   testCases: [
     { 
-      input: `console.log('Start');
-setTimeout(() => console.log('Timer'), 0);
-Promise.resolve().then(() => console.log('Promise'));
-console.log('End');`, 
-      output: `Start
-End
-Promise
-Timer` 
+      input: 'console.log(\'Start\');\nsetTimeout(() => console.log(\'Timer\'), 0);\nPromise.resolve().then(() => console.log(\'Promise\'));\nconsole.log(\'End\');', 
+      output: 'Start\nEnd\nPromise\nTimer' 
     }
   ],
   explanation: `The Event Queue (Event Loop) is the core mechanism that makes Node.js non-blocking and efficient:
@@ -16804,5 +16798,29 @@ POST /register
 - Always validate incoming data to prevent bad/malicious input.
 - Use libraries like express-validator, Joi, or Yup.
 - Return errors if validation fails; proceed if valid.`
-  }
+  },
+  {
+    id: 'custom-1752247158860',
+    title: 'require module vs ES6 modulein nodejs imports',
+    description: 'Feature comparison between require() (CommonJS) and import (ES6 Module) syntax, including file extensions, execution models, and interoperability differences.',
+    difficulty: 'Medium',
+    category: 'node1-general',
+    solution: `require() (CommonJS)
+Used in older Node.js codebases.
+
+Loads modules synchronously.
+
+Works in .js files without any config.
+
+const fs = require('fs');
+import (ES Modules)
+Modern standard for JavaScript.
+
+Loads modules asynchronously.
+
+Requires "type": "module" in package.json or use .mjs file extension.
+import fs from 'fs';`,
+    testCases: [],
+    explanation: 'CommonJS uses require() for synchronous module loading, while ES Modules use import/export for asynchronous loading. Choose based on project requirements and Node.js version support.'
+  },
 ]

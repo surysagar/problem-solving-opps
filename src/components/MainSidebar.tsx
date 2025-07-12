@@ -35,7 +35,8 @@ const categories = [
   { id: 'responsibilities-communication', label: 'RESPONSIBILITIES-COMMUNICATION' },
   { id: 'css', label: 'CSS' },
   { id: 'jobs', label: 'JOBS' },
-  { id: 'nextjs', label: 'Next.js' }
+  { id: 'nextjs', label: 'Next.js' },
+  { id: 'postgresql-mongodb', label: 'PostgreSQL vs MongoDB' }
 ]
 
 const architectureSubCategories = [
@@ -45,6 +46,7 @@ const architectureSubCategories = [
 ]
 
 const nodejsSubCategories = [
+  { id: 'node1-basic', label: 'Basic' },
   { id: 'node1-general', label: 'General' }
 ]
 

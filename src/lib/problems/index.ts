@@ -28,8 +28,10 @@ import { tradingProblems } from './tradingProblems'
 import { responsibilitiesCommunicationProblems } from './responsibilitiesCommunicationProblems'
 import { cssProblems } from './cssProblems'
 import { jobsProblems } from './jobsProblems'
+import { nodeBasicProblems } from './nodeBasic'
 import { nodeGeneralProblems } from './nodeGeneral'
 import { nextjsProblems } from './nextjsProblems'
+import { postgresqlMongodbProblems } from './postgresqlMongodbProblems'
 
 export const problems: Record<string, Problem[]> = {
   loop: loopsProblems,
@@ -61,6 +63,8 @@ export const problems: Record<string, Problem[]> = {
   'responsibilities-communication': responsibilitiesCommunicationProblems,
   'css': cssProblems,
   'jobs': jobsProblems,
+  'node1-basic': nodeBasicProblems,
   'node1-general': nodeGeneralProblems,
-  'nextjs': nextjsProblems
+  'nextjs': nextjsProblems,
+  'postgresql-mongodb': postgresqlMongodbProblems
 } 
